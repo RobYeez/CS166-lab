@@ -6,21 +6,24 @@ DROP TABLE if EXISTS Work_Dept
 DROP TABLE if EXISTS Work_In
 DROP TABLE if EXISTS Work_Proj
 
-CREATE TABLE Professor (ssn integer NOT NULL,
-             name text,
-             age number,
-             rank number,
-             speciality text,
+CREATE TABLE Professor (
+             ssn integer NOT NULL,
+             name CHAR(32),
+             age integer,
+             rank integer,
+             speciality CHAR(32),
              PRIMARY_KEY (ssn));
 
-CREATE TABLE Dept (dno number NOT NULL,
+CREATE TABLE Dept (
+             dno number NOT NULL,
              dname text,
              office text,
              runs number,
              PRIMARY_KEY (dno),
              FOREIGN_KEY(runs) REFERENCES Professor (ssn));
 
-CREATE TABLE Project (pno number NOT NULL,
+CREATE TABLE Project (
+             pno number NOT NULL,
              sponsor text,
              start_date date,
              end_date date,
@@ -29,7 +32,8 @@ CREATE TABLE Project (pno number NOT NULL,
              PRIMARY_KEY (pno),
              FOREIGN_KEY(manage) REFERENCES Professor(ssn)););
 
-CREATE TABLE Graduate (ssn integer NOT NULL,
+CREATE TABLE Graduate (
+             ssn integer NOT NULL,
              name text,
              age number,
              deg_pg text,
@@ -37,7 +41,8 @@ CREATE TABLE Graduate (ssn integer NOT NULL,
              PRIMARY_KEY (ssn),
              FOREIGN_KEY(major) REFERENCES Dept(dno));
 
-CREATE TABLE Work_Dept (time_pc number NOT NULL,
+CREATE TABLE Work_Dept (
+             time_pc number NOT NULL,
              ssn numeric(0,9) NOT NULL,
              dno number NOT NULL,
              PRIMARY_KEY ((ssn, dno)),
@@ -49,7 +54,8 @@ CREATE TABLE Work_In (
              FOREIGN_KEY(ssn) REFERENCES Professor(ssn),
              FOREIGN_KEY(pno) REFERENCES Project(pno));
 
-CREATE TABLE Work_Proj (since date,
+CREATE TABLE Work_Proj (
+             since date,
              supervise number,
              PRIMARY_KEY ((pno, ssn)),
              FOREIGN_KEY(pno) REFERENCES Project(pno),
