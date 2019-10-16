@@ -8,55 +8,61 @@ DROP TABLE if EXISTS Work_Proj
 
 CREATE TABLE Professor (
              ssn integer NOT NULL,
-             name CHAR(32),
+             name char(32),
              age integer,
              rank integer,
-             speciality CHAR(32),
+             speciality char(32),
              PRIMARY_KEY (ssn));
 
 CREATE TABLE Dept (
-             dno number NOT NULL,
-             dname text,
-             office text,
-             runs number,
-             PRIMARY_KEY (dno),
+             dno integer NOT NULL,
+             dname char(32),
+             office char(32),
+             runs integer,
+             PRIMARY_KEY (dno) NOT NULL,
              FOREIGN_KEY(runs) REFERENCES Professor (ssn));
 
 CREATE TABLE Project (
-             pno number NOT NULL,
-             sponsor text,
+             pno integer NOT NULL,
+             sponsor char(32),
              start_date date,
              end_date date,
-             budget number,
-             manage number,
-             PRIMARY_KEY (pno),
-             FOREIGN_KEY(manage) REFERENCES Professor(ssn)););
+             budget integer,
+             manage integer,
+             PRIMARY_KEY (pno) NOT NULL,
+             FOREIGN_KEY(manage) REFERENCES Professor(ssn));
 
 CREATE TABLE Graduate (
              ssn integer NOT NULL,
-             name text,
-             age number,
-             deg_pg text,
-             major number,
-             PRIMARY_KEY (ssn),
-             FOREIGN_KEY(major) REFERENCES Dept(dno));
+             name char(32),
+             age integer,
+             deg_pg char(32),
+             major integer,
+             advise char(32),
+             PRIMARY_KEY (ssn) NOT NULL,
+             FOREIGN_KEY(major) REFERENCES Dept(dno))
+             FOREIGN_KEY(advise) REFERENCES Graduate(ssn);
 
 CREATE TABLE Work_Dept (
-             time_pc number NOT NULL,
-             ssn numeric(0,9) NOT NULL,
-             dno number NOT NULL,
-             PRIMARY_KEY ((ssn, dno)),
+             time_pc integer NOT NULL,
+             ssn integer NOT NULL,
+             dno integer NOT NULL,
+             PRIMARY_KEY ((ssn, dno)) NOT NULL,
              FOREIGN_KEY(ssn) REFERENCES Professor(ssn),
              FOREIGN_KEY(dno) REFERENCES Dept(dno));
 
 CREATE TABLE Work_In (
-             PRIMARY_KEY ((ssn, pno)),
+             ssn integer NOT NULL,
+             pno integer NOT NULL,
+             PRIMARY_KEY ((ssn, pno)) NOT NULL,
              FOREIGN_KEY(ssn) REFERENCES Professor(ssn),
              FOREIGN_KEY(pno) REFERENCES Project(pno));
 
 CREATE TABLE Work_Proj (
              since date,
-             supervise number,
+             pno integer NOT NULL,
+             ssn integer NOT NULL,
+             supervise integer,
              PRIMARY_KEY ((pno, ssn)),
              FOREIGN_KEY(pno) REFERENCES Project(pno),
              FOREIGN_KEY(ssn) REFERENCES Graduate(ssn),
