@@ -36,7 +36,9 @@ CREATE TABLE Instrument (
 CREATE TABLE Musicians (
              ssn integer NOT NULL,
              name char(32),
-             PRIMARY_KEY(ssn));
+             lives char(32),
+             PRIMARY_KEY(ssn),
+             FOREIGN_KEY(lives) REFERENCES Place(address));
 
 CREATE TABLE Plays (
              ssn integer NOT NULL,
@@ -68,7 +70,9 @@ CREATE TABLE Appears (
 
 CREATE TABLE Place (
              address char(32) NOT NULL,
-             PRIMARY_KEY(address));
+             home integer,
+             PRIMARY_KEY(address),
+             FOREIGN_KEY(home) REFERENCES Telephone(phone_no));
 
 CREATE TABLE Telephone (
              phone_no integer,
