@@ -1,3 +1,4 @@
+-PROBLEM 1
 DROP TABLE if EXISTS Professor
 DROP TABLE if EXISTS Dept
 DROP TABLE if EXISTS Project
@@ -68,7 +69,7 @@ CREATE TABLE Work_Proj (
              FOREIGN_KEY(ssn) REFERENCES Graduate(ssn),
              FOREIGN_KEY(supervise) REFERENCES Professor(ssn));
 
----------------------------------------------------------------------------
+-PROBLEM 2
 DROP TABLE if EXISTS Album
 DROP TABLE if EXISTS Songs
 DROP TABLE if EXISTS Instrument
