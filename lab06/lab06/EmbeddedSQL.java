@@ -252,25 +252,52 @@ public class EmbeddedSQL {
       // Your code goes here.
       // ...
       // ...
-   }//end Query1
+      try{
+	String query = "SELECT COUNT(*), S.sname FROM Suppliers S, Parts P, Catalog C WHERE P.pid = C.pid AND S.sid = C.sid GROUP BY S.sid;";
+	int rowCount = esql.executeQuery(query);
+	System.out.println("total row(s): " + rowCount);
+ 	}catch(Exection e) {
+	  System.err.println (e.getMessage());
+	}
+  }//end Query1
 
    public static void Query2(EmbeddedSQL esql){
       // Your code goes here.
       // ...
       // ...
-   }//end Query2
+     try{
+ 	String query = "SELECT COUNT(*), S.sname FROM Suppliers S, Parts P, Catalog C WHERE P.pid = C.pid AND S.sid = C.sid GROUP BY S.sid HAVING COUNT(*) > 2;";
+	int rowCount = esql.exectueQuery(query);
+	System.out.println("total row(s): " + rowCount);
+	}catch(Execption e) {
+	  System.err.println (e.getMessage());
+	} 
+ }//end Query2
 
    public static void Query3(EmbeddedSQL esql){
       // Your code goes here.
       // ...
       // ...
-   }//end Query3
+     try{
+	String query = "SELECT S.sname, COUNT(*) FROM Suppliers S, Parts P, Catalog C WHERE P.pid = C.pid AND S.sid = C.sid AND S.sid IN (SELECT S.sid FROM Suppliers S, Parts P, Catalaog C WHERE P.pid = C.pid AND S.sid = C.sid AND P.color = 'Green' EXCEPT SELECT S.sid FROM Suppliers S, Parts P, Catalog C WHERE P.pid = C.pid AND S.sid = C.sid AND P.color != 'Green') GROUP BY S.sid;";
+	int rowCount = esql.exectueQuery(query);
+	System.out.println("total row(s): " + rowCount);
+	}catch(Execption e) {
+	  System.err.println (e.getMessage());
+	}  
+ }//end Query3
 
    public static void Query4(EmbeddedSQL esql){
       // Your code goes here.
       // ...
       // ...
-   }//end Query4
+     try{
+	String query = "SELECT S.sname, MAX(C.cost) FROM Suppliers S, Parts P, Catalog C WHERE P.pid = C.cid AND S.sid = C.sid AND S.sid IN (SELECT S.sid FROM Suppliers S, Parts P, Catalog C WHERE P.pid = C.pid AND S.sid = C.sid AND P.color = 'Green' INTERSECT SELECT S.sid FROM Suppliers S, Parts P, Catalog C WHERE P.pid = C.pid AND S.sid = C.sid AND P.color = 'Red') GROUP BY S.sid;";
+	int rowCount = esql.exectureQuery(query);
+	System.out.println("total row(s): " + rowCount);
+	}catch(Exection e) {
+	  System.err.println (e.getMessage());
+  }//end Query4
 
    public static void Query5(EmbeddedSQL esql){
       // Your code goes here.
