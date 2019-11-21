@@ -45,5 +45,5 @@ WHERE on_hand < 30;
 
 -- test index
 SELECT COUNT(*)
-FROM  part_nyc P WITH(INDEX(part_nyc_on_hand_index))
-WHERE P > 70;
+FROM  part_nyc WITH(INDEX(part_nyc_on_hand_index))
+WHERE part_nyc_on_hand_index > 70;
