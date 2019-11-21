@@ -1,5 +1,7 @@
 CREATE INDEX part_nyc_number_index
-ON part_nyc (part_number);
+ON part_nyc 
+[USING BTREE]
+(part_number);
 
 CREATE INDEX part_nyc_supplier_index
 ON part_nyc (supplier);
