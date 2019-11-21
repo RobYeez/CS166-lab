@@ -9,9 +9,9 @@ SELECT SUM(
   +
   (SELECT COUNT(S.on_hand)
   FROM part_sfo S, color C
-  WHERE S.color = C.color_id AND C.color_name = 'Green')
+  WHERE S.color = C.color_id AND C.color_name = 'Red')
 )
-AS sum_red;
+
 
 SELECT S.supplier_id, S.supplier_name
 FROM supplier S
@@ -26,11 +26,11 @@ WHERE S.supplier_id = SFO.supplier)
 ORDER BY S.supplier_id;
 
 SELECT DISTINCT S.supplier_id, S.supplier_name
-FROM supplier S, part_nyc NYC
-WHERE S.supplier_id = NYC.supplier AND NYC.part_number IN
-(SELECT NYC.part_number
-FROM supplier S, part_nyc NYC
-WHERE S.supplier_id = NYC.supplier
+FROM supplier S, part_nyc P
+WHERE S.supplier_id = P.supplier AND P.part_number IN
+(SELECT P.part_number
+FROM supplier S, part_nyc P
+WHERE S.supplier_id = P.supplier
 EXCEPT
 SELECT SFO.part_number
 FROM supplier S, part_sfo SFO
