@@ -14,6 +14,9 @@
 import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.Statement;
+
+import javax.management.RuntimeErrorException;
+
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -257,6 +260,13 @@ public class DBProject {
 	  // Given customer details add the customer in the DB 
       // Your code goes here.
       int custID;
+      string fname;
+      string lname;
+      string address;
+      int phoneNum;
+      string gender;
+
+      //get customerID
       System.out.print("Input Customer ID");
       while(true) {
          try {
@@ -264,9 +274,74 @@ public class DBProject {
             break;
          }
          catch(Execption e) {
-            System.out
+            System.out.println("Not a valid Customer ID");
          }
       }
+      //get first name
+      System.out.print("Input First Name");
+      while(true) {
+         try {
+            fname = in.readLine();
+            if (fname.length() <= 0 || fname.length() > 32) {
+               throw new RuntimeException("First name cannot be 0 letters or longer than 32");
+            }
+            break;
+         }
+         catch(Execption e) {
+            System.out.println(e);
+         }
+      }
+      //get last name
+      while(true) {
+         try {
+            lname = in.readLine();
+            if (lname.length() <= 0 || lname.length() > 32) {
+               throw new RuntimeException("Last name cannot be 0 letters or longer than 32");
+            }
+            break;
+         }
+         catch(Execption e) {
+            System.out.println(e);
+         }
+      }
+      //get address
+      while(true) {
+         try {
+            address = in.readLine();
+            if (address.length() <= 0 || address.length() > 32) {
+               throw new RuntimeException("Address cannot be 0 letters or longer than 32");
+            }
+            break;
+         }
+         catch(Execption e) {
+            System.out.println(e);
+         }
+      }
+      //get phone number
+      while(true) {
+         try {
+            phonenum = Integer.parseInt(in.readLine());
+            break;
+         }
+         catch(Execption e) {
+            System.out.println("Not a valid Phone number");
+         }
+      }
+      //get gender
+      while(true) {
+         try {
+            gender = in.readLine();
+            if (gender.length() <= 0 || gender.length() > 32) {
+               throw new RuntimeException("Address cannot be 0 letters or longer than 32");
+            }
+            break;
+         }
+         catch(Execption e) {
+            System.out.println(e);
+         }
+      }
+   //we have all the inputs ... need to insert into query now   
+   
      
    }//end addCustomer
 
