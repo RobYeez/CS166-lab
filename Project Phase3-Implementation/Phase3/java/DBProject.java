@@ -342,7 +342,7 @@ public class DBProject {
             try {
                SimpleDateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");
                dob = dateFormat.parse(in.readLine());
-               dob = dob.toString();
+               // dob = dob.toString();
                break;
             }
             catch(Exception e) {
