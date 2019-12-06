@@ -340,8 +340,10 @@ public class DBProject {
             System.out.println(e);
          }
       }
-   //we have all the inputs ... need to insert into query now   
+      //we have all the inputs ... need to insert into query now   
    
+      string esqlQuery = "INSERT INTO Customer(custID, fname, lname, address, phoneNum ,gender) VALUES (custID, fname, lname, address, phoneNum, gender)";
+      esql.executeQuery(esqlQuery);
      
    }//end addCustomer
 
