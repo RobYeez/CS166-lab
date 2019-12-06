@@ -267,8 +267,8 @@ public class DBProject {
       String gender;
 
       //get customerID
-      System.out.print("Input Customer ID");
       while(true) {
+      System.out.print("Input Customer ID: ");
          try {
             custID = Integer.parseInt(in.readLine());
             break;
@@ -280,8 +280,8 @@ public class DBProject {
          }
       }
       //get first name
-      System.out.print("Input First Name");
       while(true) {
+      System.out.print("Input First Name: ");
          try {
             fname = in.readLine();
             if (fname.length() <= 0 || fname.length() > 32) {
@@ -295,6 +295,7 @@ public class DBProject {
       }
       //get last name
       while(true) {
+      System.out.print("Input Last Name: ");
          try {
             lname = in.readLine();
             if (lname.length() <= 0 || lname.length() > 32) {
@@ -308,6 +309,7 @@ public class DBProject {
       }
       //get address
       while(true) {
+      System.out.print("Input Address: ");
          try {
             address = in.readLine();
             if (address.length() <= 0 || address.length() > 32) {
@@ -321,6 +323,7 @@ public class DBProject {
       }
       //get phone number
       while(true) {
+      System.out.print("Input Phone Number: ");
          try {
             phoneNum = Integer.parseInt(in.readLine());
             break;
@@ -332,6 +335,7 @@ public class DBProject {
       }
       //get gender
       while(true) {
+      System.out.print("Input Gender: ");
          try {
             gender = in.readLine();
             if (gender.length() <= 0 || gender.length() > 32) {
