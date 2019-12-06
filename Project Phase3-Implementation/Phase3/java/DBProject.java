@@ -422,7 +422,7 @@ public class DBProject {
       while(true) {
          System.out.print("Is company certified?");
          try {
-            isCertified = in.readLine();
+            isCertified = Boolean.parseBoolean(in.readLine());
             if(!isCertified.equals("TRUE") && !isCertified.equals("FALSE")) {
                throw new RuntimeException("Either TRUE or FALSE");
             }
@@ -433,7 +433,7 @@ public class DBProject {
          }
       }
       try {
-         String esqlQuery = "INSERT INTO MaintenanceCompany(cmpID, name, address, isCerfitied) VALUES (" + customerID + " , \' " + name + " \' , \' " + address + " \', " + isCertified + " );";
+         String esqlQuery = "INSERT INTO MaintenanceCompany(cmpID, name, address, isCerfitied) VALUES (" + cmpID + " , \' " + name + " \' , \' " + address + " \', " + isCertified + " );";
          esql.executeUpdate(esqlQuery);
       }   
       catch(Exception e) {
