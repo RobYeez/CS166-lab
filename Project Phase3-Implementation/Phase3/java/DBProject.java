@@ -14,6 +14,7 @@
 import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 
 import javax.management.RuntimeErrorException;
 
@@ -24,6 +25,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.Date;
 
 /**
  * This class defines a simple embedded SQL utility class that is designed to
@@ -259,19 +261,19 @@ public class DBProject {
    public static void addCustomer(DBProject esql){
 	  // Given customer details add the customer in the DB 
       // Your code goes here.
-      int custID;
+      int customerID;
       String fname;
       String lname;
       String address;
       int phoneNum;
-      int dob;
+      Date dob;
       String gender;
 
       //get customerID
       while(true) {
       System.out.print("Input Customer ID: ");
          try {
-            custID = Integer.parseInt(in.readLine());
+            customerID = Integer.parseInt(in.readLine());
             break;
          }
          catch(Exception e) {
@@ -338,7 +340,9 @@ public class DBProject {
       while(true) {
          System.out.print("Input DOB: ");
             try {
-               dob = Integer.parseInt(in.readLine());
+               SimpleDateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");
+               dob = dateFormat.parse(in.readLine());
+               // dob = dob.toString();
                break;
             }
             catch(Exception e) {
@@ -362,7 +366,7 @@ public class DBProject {
       }
       //we have all the inputs ... need to insert into query now   
       try {
-         String esqlQuery = "INSERT INTO Customer(customerID, fname, lname, Address, phNo, DOB, gender) VALUES (custID, fname, lname, address, phoneNum, dob, gender)";
+         String esqlQuery = "INSERT INTO Customer(customerID, fname, lname, Address, phNo, DOB, gender) VALUES ('customerID', 'fname', 'lname', 'address', 'phoneNum', 'dob', 'gender')";
          esql.executeUpdate(esqlQuery);
       }   
       catch(Exception e) {
