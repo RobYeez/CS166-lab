@@ -264,6 +264,7 @@ public class DBProject {
       String lname;
       String address;
       int phoneNum;
+      int dob;
       String gender;
 
       //get customerID
@@ -330,9 +331,21 @@ public class DBProject {
          }
          catch(Exception e) {
             System.out.println("Not a valid Phone number");
-            
+            System.out.println(e);
          }
       }
+      //get DOB
+      while(true) {
+         System.out.print("Input DOB: ");
+            try {
+               dob = Integer.parseInt(in.readLine());
+               break;
+            }
+            catch(Exception e) {
+               System.out.println("Not a valid DOB");
+               System.out.println(e);
+            }
+         }
       //get gender
       while(true) {
       System.out.print("Input Gender: ");
@@ -349,7 +362,7 @@ public class DBProject {
       }
       //we have all the inputs ... need to insert into query now   
       try {
-         String esqlQuery = "INSERT INTO Customer(custID, fname, lname, address, phoneNum ,gender) VALUES (custID, fname, lname, address, phoneNum, gender)";
+         String esqlQuery = "INSERT INTO Customer(customerID, fname, lname, Address, phNo, DOB, gender) VALUES (custID, fname, lname, address, phoneNum, dob, gender)";
          esql.executeUpdate(esqlQuery);
       }   
       catch(Exception e) {
