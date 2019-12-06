@@ -713,7 +713,7 @@ public class DBProject {
 		}
       //book room ... should check if room is open first ... and then if it is open then book
       try {
-         String esqlQuery = "SELECT bookingDate, roomNo, hotelID FROM Booking WHERE hotelID =  " + hotelID + "  AND roomNo = " + roomNo + " AND bookingDate = " + bookingDate + " ;";
+         String esqlQuery = "SELECT bookingDate, roomNo, hotelID FROM Booking WHERE hotelID =  " + hotelID + "  AND roomNo = " + roomNo + " AND bookingDate = \'" + bookingDate + "\'\n ;";
          String input;
          if (esql.executeQuery(esqlQuery) == 0) {
             while(true) {
