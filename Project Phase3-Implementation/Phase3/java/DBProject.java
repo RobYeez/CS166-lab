@@ -360,8 +360,8 @@ public class DBProject {
       System.out.print("Input Gender: ");
          try {
             gender = in.readLine();
-            if (gender != "Male" || gender != "Female" || gender != "Other") {
-               throw new RuntimeException("Gender cannot be 0 letters or longer than 32");
+            if (gender != "Male" && gender != "Female" && gender != "Other") {
+               throw new RuntimeException("Gender can only be Male, Female, or Other");
             }
             break;
          }
