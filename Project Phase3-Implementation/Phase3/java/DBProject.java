@@ -651,9 +651,142 @@ public class DBProject {
 
    public static void bookRoom(DBProject esql){
 	   	// Given hotelID, roomNo and customer Name create a booking in the DB 
-      // Your code goes here.
-      // ...
-      // ...
+      int hotelID;
+      int roomNo;
+      String customerName;
+      Date bookingDate;
+
+      //get hotelID
+      while(true) {
+			System.out.print("Input Hotel ID: ");
+			try {
+				hotelID = Integer.parseInt(in.readLine());
+				break;
+			}
+			catch(Exception e) {
+				System.out.println("Not a valid Hotel ID");
+				System.out.println(e);
+				continue;
+			}
+      }
+      //get roomNo
+      while(true) {
+			System.out.print("Input Room Number: ");
+			try {
+				roomNo = Integer.parseInt(in.readLine());
+				break;
+			}
+			catch(Exception e) {
+				System.out.println("Not a valid Room Number");
+				System.out.println(e);
+				continue;
+			}
+      }
+      //get customer name
+      while(true) {
+			System.out.print("Input Customer name: ");
+			try {
+				customerName = in.readLine();
+				if (customerName.length() <= 0 || customerName.length() > 10) {
+					throw new RuntimeException("Customer name cannot be 0 letters or longer than 10");
+				}
+				break;
+			}
+			catch(Exception e) {
+				System.out.println(e);
+				continue;
+			}
+      }
+      //get booking Date
+      while(true) {
+			System.out.print("Input Date of Booking: ");
+			try {
+				SimpleDateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");
+				bookingDate = dateFormat.parse(in.readLine());
+				break;
+			}
+			catch(Exception e) {
+				System.out.println("Not a valid date");
+				System.out.println(e);
+				continue;
+			}
+		}
+      //book room ... should check if room is open first ... and then if it is open then book
+      try {
+         String esqlQuery = "SELECT bookingDate, roomNo, hotelID FROM Booking WHERE hotelID =  '" + hotelID + "  AND roomNo = " + roomNo + " AND bookingDate = " + bookingDate + ";";
+         String input;
+         if (esql.executeQuery(esqlQuery) == 0) {
+            while(true) {
+               System.out.println("Room is open, would you like to reserve?");
+               input = in.readLine();
+               if (input.equals("Y")) {
+                  //need new info to put in... bID, etc.
+                  //bookingID
+                  int bID;
+                  int noOfPeople;
+                  int price;
+                  //get bID
+                  while(true) {
+                     System.out.print("Input Booking ID: ");
+                     try {
+                        bID = Integer.parseInt(in.readLine());
+                        break;
+                     }
+                     catch(Exception e) {
+                        System.out.println("Not a valid Booking ID");
+                        System.out.println(e);
+                        continue;
+                     }
+                  }
+                  //get noOfPeople
+                  while(true) {
+                     System.out.print("Input Number of People: ");
+                     try {
+                        noOfPeople = Integer.parseInt(in.readLine());
+                        break;
+                     }
+                     catch(Exception e) {
+                        System.out.println("Not a valid Number of People");
+                        System.out.println(e);
+                        continue;
+                     }
+                  }
+                  //get price? not sure why it is user inputted...lmao
+                  while(true) {
+                     System.out.print("Input Price: ");
+                     try {
+                        price = Integer.parseInt(in.readLine());
+                        break;
+                     }
+                     catch(Exception e) {
+                        System.out.println("Not a valid Price");
+                        System.out.println(e);
+                        continue;
+                     }
+                  }
+                  //insert into Booking
+                  try {
+                     esqlQuery = "INSERT INTO Booking(bID, customer, hotelID, roomNo, bookingDate, noOfPeople, price) VALUES (" + bID + " , /' " + customer + " /', " + hotelID + ", " + roomNo + ", " + bookingDate + " , " + noOfPeople + ", " + price + ");";
+                     esql.executeUpdate(esqlQuery);
+                  }
+                  catch(Exception e) {
+                     System.err.println(e.getMessage());
+                  }
+               }
+               else if (input.equals("N")) {
+                  System.out.println("Room booking canceled");
+                  break;
+               }
+               else {
+                  System.out.println("Invalid input");
+               }    
+            }
+         } 
+      }
+      catch(Exception e) {
+         System.out.println(e);
+         continue;
+      }  
    }//end bookRoom
 
    public static void assignHouseCleaningToRoom(DBProject esql){
