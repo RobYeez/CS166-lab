@@ -292,8 +292,8 @@ public class DBProject {
       System.out.print("Input First Name: ");
          try {
             fname = in.readLine();
-            if (fname.length() <= 0 || fname.length() > 32) {
-               throw new RuntimeException("First name cannot be 0 letters or longer than 32");
+            if (fname.length() <= 0 || fname.length() > 30) {
+               throw new RuntimeException("First name cannot be 0 letters or longer than 30");
             }
             break;
          }
@@ -306,8 +306,8 @@ public class DBProject {
       System.out.print("Input Last Name: ");
          try {
             lname = in.readLine();
-            if (lname.length() <= 0 || lname.length() > 32) {
-               throw new RuntimeException("Last name cannot be 0 letters or longer than 32");
+            if (lname.length() <= 0 || lname.length() > 30) {
+               throw new RuntimeException("Last name cannot be 0 letters or longer than 30");
             }
             break;
          }
@@ -320,8 +320,8 @@ public class DBProject {
       System.out.print("Input Address: ");
          try {
             address = in.readLine();
-            if (address.length() <= 0 || address.length() > 32) {
-               throw new RuntimeException("Address cannot be 0 letters or longer than 32");
+            if (address.length() <= 0 || address.length() > 30) {
+               throw new RuntimeException("Address cannot be 0 letters or longer than 30");
             }
             break;
          }
@@ -387,8 +387,60 @@ public class DBProject {
 
    public static void addMaintenanceCompany(DBProject esql){
       // Given maintenance Company details add the maintenance company in the DB
-      // ...
-      // ...
+      int cmpID;
+      String name;
+      String address;
+      Boolean isCertified;
+
+      //get company id
+      while(true) {
+         System.out.print("Input Company ID: ");
+            try {
+               cmpID = Integer.parseInt(in.readLine());
+               break;
+            }
+            catch(Exception e) {
+               System.out.println("Not a valid Company ID");
+               System.out.println(e);
+            }
+      }
+      //get company name
+      while(true) {
+         System.out.print("Input Company Name: ");
+            try {
+               name = in.readLine();
+               if (name.length() <= 0 || name.length() > 30) {
+                  throw new RuntimeException("Company Name cannot be 0 letters or longer than 30");
+               }
+               break;
+            }
+            catch(Exception e) {
+               System.out.println(e);
+            }
+      }
+      //get isCertified
+      while(true) {
+         System.out.print("Is company certified?");
+         try {
+            isCertified = in.readLine();
+            if(!isCertified.equals("TRUE") && !isCertified.equals("FALSE")) {
+               throw new RuntimeException("Either TRUE or FALSE");
+            }
+            break;
+         }
+         catch(Exception e) {
+            System.out.println(e);
+         }
+      }
+      try {
+         String esqlQuery = "INSERT INTO MaintenanceCompany(cmpID, name, address, isCerfitied) VALUES (" + customerID + " , \' " + name + " \' , \' " + address + " \', " + isCertified + " );";
+         esql.executeUpdate(esqlQuery);
+      }   
+      catch(Exception e) {
+         System.err.println(e.getMessage());  
+      }
+
+      
    }//end addMaintenanceCompany
 
    public static void addRepair(DBProject esql){
