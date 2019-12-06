@@ -345,10 +345,10 @@ public class DBProject {
       }
       //we have all the inputs ... need to insert into query now   
       try {
-         String query = "INSERT INTO Customer(custID, fname, lname, address, phoneNum ,gender) VALUES (custID, fname, lname, address, phoneNum, gender)";
+         String esqlQuery = "INSERT INTO Customer(custID, fname, lname, address, phoneNum ,gender) VALUES (custID, fname, lname, address, phoneNum, gender)";
+         esql.executeUpdate(esqlQuery);
       }   
       catch(Exception e) {
-         esql.executeUpdate(query);
          System.err.println(e.getMessage());  
       }
    }//end addCustomer
