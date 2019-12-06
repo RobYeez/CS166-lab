@@ -653,7 +653,7 @@ public class DBProject {
 	   	// Given hotelID, roomNo and customer Name create a booking in the DB 
       int hotelID;
       int roomNo;
-      String customerName;
+      int customerID;
       Date bookingDate;
 
       //get hotelID
@@ -684,15 +684,13 @@ public class DBProject {
       }
       //get customer name
       while(true) {
-			System.out.print("Input Customer name: ");
+			System.out.print("Input Customer ID: ");
 			try {
-				customerName = in.readLine();
-				if (customerName.length() <= 0 || customerName.length() > 10) {
-					throw new RuntimeException("Customer name cannot be 0 letters or longer than 10");
-				}
+				customerID = Integer.parseInt(in.readLine());
 				break;
 			}
 			catch(Exception e) {
+				System.out.println("Not a valid Customer ID");
 				System.out.println(e);
 				continue;
 			}
@@ -766,7 +764,7 @@ public class DBProject {
                   }
                   //insert into Booking
                   try {
-                     esqlQuery = "INSERT INTO Booking(bID, customer, hotelID, roomNo, bookingDate, noOfPeople, price) VALUES (" + bID + " , \' " + customerName + " \', " + hotelID + ", " + roomNo + ", \' " + bookingDate + " \' , " + noOfPeople + ", " + price + ");";
+                     esqlQuery = "INSERT INTO Booking(bID, customer, hotelID, roomNo, bookingDate, noOfPeople, price) VALUES (" + bID + " , " + customerName + " , " + hotelID + ", " + roomNo + ", \' " + bookingDate + " \' , " + noOfPeople + ", " + price + ");";
                      esql.executeUpdate(esqlQuery);
                   }
                   catch(Exception e) {
