@@ -431,7 +431,7 @@ public class DBProject {
          System.out.print("Is company certified?");
          try {
             isCertified = Boolean.parseBoolean(in.readLine());
-            if(isCertified == TRUE && isCertified != FALSE) {
+            if(isCertified != "TRUE" && isCertified != "FALSE") {
                throw new RuntimeException("Either TRUE or FALSE");
             }
             break;
