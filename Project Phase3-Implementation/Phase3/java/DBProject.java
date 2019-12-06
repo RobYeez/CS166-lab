@@ -764,7 +764,7 @@ public class DBProject {
                   }
                   //insert into Booking
                   try {
-                     esqlQuery = "INSERT INTO Booking(bID, customer, hotelID, roomNo, bookingDate, noOfPeople, price) VALUES (" + bID + " , " + customerID + " , " + hotelID + ", " + roomNo + ", \' " + bookingDate + " \' , " + noOfPeople + ", " + price + ") FROM FROM Customer C, Room R WHERE " + hotelID + " = " + R.hotelID + " AND " + roomNo + " = " + R.roomNo + " AND " + customerID + " = " + C.customerID + ";";
+                     esqlQuery = "INSERT INTO Booking(bID, customer, hotelID, roomNo, bookingDate, noOfPeople, price) VALUES (" + bID + " , " + customerID + " , " + hotelID + ", " + roomNo + ", \' " + bookingDate + " \' , " + noOfPeople + ", " + price + ") "; //FROM FROM Customer C, Room R WHERE " + hotelID + " = " + R.hotelID + " AND " + roomNo + " = " + R.roomNo + " AND " + customerID + " = " + C.customerID + ";
                      esql.executeUpdate(esqlQuery);
                   }
                   catch(Exception e) {
