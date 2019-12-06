@@ -764,7 +764,7 @@ public class DBProject {
                   }
                   //insert into Booking
                   try {
-                     esqlQuery = "INSERT INTO Booking(bID, customer, hotelID, roomNo, bookingDate, noOfPeople, price) VALUES (" + bID + " , " + customerID + " , " + hotelID + ", " + roomNo + ", \' " + bookingDate + " \' , " + noOfPeople + ", " + price + ");";
+                     esqlQuery = "INSERT INTO Booking(bID, customer, hotelID, roomNo, bookingDate, noOfPeople, price) VALUES (" + bID + " , " + customerID + " , " + hotelID + ", " + roomNo + ", \' " + bookingDate + " \' , " + noOfPeople + ", " + price + ") WHERE " + hotelID + " = " + R.hotelID + " AND " + roomNo + " = " + R.roomNo + " AND " + customerID + " = " + C.customerID + " FROM Customer C, Room R;";
                      esql.executeUpdate(esqlQuery);
                   }
                   catch(Exception e) {
@@ -793,11 +793,118 @@ public class DBProject {
       // ...
    }//end assignHouseCleaningToRoom
    
+   //there is an addRequest ... would you request
+   //does repair mean things that have been repaired and then request mean ask to repair?
    public static void repairRequest(DBProject esql){
 	  // Given a hotelID, Staff SSN, roomNo, repairID , date create a repair request in the DB
-      // Your code goes here.
-      // ...
-      // ...
+   int hotelID;
+   int SSN;
+   int roomNo;
+   int repairID;
+   Date date;
+
+   //get hotelID
+   while(true) {
+      System.out.print("Input HotelID: ");
+      try {
+         hotelID = Integer.parseInt(in.readLine());
+         break;
+      }
+      catch(Exception e) {
+         System.out.println("Invalid HotelID");
+         System.out.println(e);
+         continue;
+      }
+   }
+   //get SSN
+   while(true) {
+      System.out.print("Input SSN: ");
+      try {
+         SSN = Integer.parseInt(in.readLine());
+         break;
+      }
+      catch(Exception e) {
+         System.out.println("Not a valid SSN");
+         System.out.println(e);
+         continue;
+      }
+   }
+   //get roomNo
+   while(true) {
+      System.out.print("Input RoomNo: ");
+      try {
+         roomNo = Integer.parseInt(in.readLine());
+         break;
+      }
+      catch(Exception e) {
+         System.out.println("Not a valid RoomNo");
+         System.out.println(e);
+         continue;
+      }
+   }
+   //get repairID
+   while(true) {
+      System.out.print("Input RepairID: ");
+      try {
+         repairID = Integer.parseInt(in.readLine());
+         break;
+      }
+      catch(Exception e) {
+         System.out.println("Not a valid RepairID");
+         System.out.println(e);
+         continue;
+      }
+   }
+   //get date
+   while(true) {
+      System.out.print("Input Date of Booking: ");
+      try {
+         SimpleDateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");
+         bookingDate = dateFormat.parse(in.readLine());
+         break;
+      }
+      catch(Exception e) {
+         System.out.println("Not a valid date");
+         System.out.println(e);
+         continue;
+      }
+   }
+   //should get description, repair type, and Mcompany
+   String description;
+   String repairType; //10 chars
+   int mCompany;
+   
+   //get Description
+   while(true) {
+      System.out.print("Input repair description: ");
+      try {
+         description = in.readLine();
+         break;
+      }
+      catch(Exception e) {
+         System.out.println("Not a valid description");
+         System.out.println(e);
+         continue;
+      }
+   }
+   //get repairType
+
+   //get mCompany
+   while(true) {
+      System.out.print("Input mCompany ID: ");
+      try {
+         mCompany = Integer.parseInt(in.readLine());
+         break;
+      }
+      catch(Exception e) {
+         System.out.println("Not a valid RepairID");
+         System.out.println(e);
+         continue;
+      }
+   }
+   //only manager can make repair request
+   
+
    }//end repairRequest
    
    public static void numberOfAvailableRooms(DBProject esql){
@@ -809,9 +916,21 @@ public class DBProject {
    
    public static void numberOfBookedRooms(DBProject esql){
 	  // Given a hotelID, get the count of rooms booked
-      // Your code goes here.
-      // ...
-      // ...
+      int hotelID;
+      while(true) {
+         System.out.print("Input Hotel ID: ");
+         try {
+            hotelID = Integer.parseInt(in.readLine());
+            break;
+         }
+         catch(Exception e) {
+            System.out.println("Not a valid RepairID");
+            System.out.println(e);
+            continue;
+         }
+      }
+
+
    }//end numberOfBookedRooms
    
    public static void listHotelRoomBookingsForAWeek(DBProject esql){
