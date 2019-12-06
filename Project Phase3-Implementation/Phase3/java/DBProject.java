@@ -322,7 +322,7 @@ public class DBProject {
       //get phone number
       while(true) {
          try {
-            phonenum = Integer.parseInt(in.readLine());
+            phoneNum = Integer.parseInt(in.readLine());
             break;
          }
          catch(Exception e) {
