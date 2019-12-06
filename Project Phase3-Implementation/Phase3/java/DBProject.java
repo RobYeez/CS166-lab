@@ -272,7 +272,7 @@ public class DBProject {
       String address;
       int phoneNum;
       Date dob;
-      String gender;
+      Gender gender;
 
       //get customerID
       while(true) {
