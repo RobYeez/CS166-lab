@@ -261,11 +261,11 @@ public class DBProject {
    public static void addCustomer(DBProject esql){
 	  // Given customer details add the customer in the DB 
       // Your code goes here.
-      Int customerID;
+      int customerID;
       String fname;
       String lname;
       String address;
-      Int phoneNum;
+      int phoneNum;
       Date dob;
       String gender;
 
@@ -366,7 +366,7 @@ public class DBProject {
       }
       //we have all the inputs ... need to insert into query now   
       try {
-         String esqlQuery = "INSERT INTO Customer(customerID, fname, lname, Address, phNo, DOB, gender) VALUES ('customerID', 'fname', 'lname', 'address', 'phoneNum', 'dob', 'gender')";
+         String esqlQuery = "INSERT INTO Customer(customerID, fname, lname, Address, phNo, DOB, gender) VALUES (" + customerID + ", " + fname + " , " + lname + ", " + address + " , " + phoneNum + " , " + dob + ", " + gender + ")";
          esql.executeUpdate(esqlQuery);
       }   
       catch(Exception e) {
