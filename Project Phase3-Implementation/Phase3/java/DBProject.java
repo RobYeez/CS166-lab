@@ -396,7 +396,7 @@ public class DBProject {
       int cmpID;
       String name;
       String address;
-      Boolean isCertified;
+      String isCertified;
 
       //get company id
       while(true) {
