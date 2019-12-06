@@ -339,7 +339,7 @@ public class DBProject {
       while(true) {
          System.out.print("Input DOB: ");
             try {
-               SimpleDateFormat dateFormat = new SimpleDateFormat('mm/dd/yyyy');
+               SimpleDateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");
                dob = dateFormat.parse(in.readLine());
                break;
             }
