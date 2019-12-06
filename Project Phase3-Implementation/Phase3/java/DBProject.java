@@ -426,6 +426,21 @@ public class DBProject {
                continue;
             }
       }
+      //get address
+      while(true) {
+         System.out.print("Input Address: ");
+            try {
+               address = in.readLine();
+               if (address.length() <= 0 || address.length() > 30) {
+                  throw new RuntimeException("Address cannot be 0 letters or longer than 30");
+               }
+               break;
+            }
+            catch(Exception e) {
+               System.out.println(e);
+               continue;
+            }
+      }
       //get isCertified
       while(true) {
          System.out.print("Is company certified?");
