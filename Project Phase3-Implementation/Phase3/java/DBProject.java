@@ -421,12 +421,13 @@ public class DBProject {
 			}
 			catch(Exception e) {
 				System.out.println(e);
+				continue;
 			}
 		}
 
 		// insert query
 		try {
-			String esqlQuery = "INSERT INTO Room(hotelID, roomNo, roomType) VALUES (hotelID, roomNo, roomType)";
+			String esqlQuery = "INSERT INTO Room (hotelID, roomNo, roomType) VALUES (" + hotelID + ", \'" + roomNo + "\', \'" + roomType + "\')";
 			esql.executeUpdate(esqlQuery);
 		}
 		catch(Exception e) {
@@ -443,8 +444,124 @@ public class DBProject {
    public static void addRepair(DBProject esql){
 	   	// Given repair details add repair in the DB
       // Your code goes here.
-      // ...
-      // ...
+      int rID;
+      int hotelID;
+      int roomNo;
+      int mCompany;
+      Date repairDate;
+      String description;
+      String repairType;
+		
+		// get rID
+		while(true) {
+			System.out.print("Input repair ID: ");
+			try {
+				rID = Integer.parseInt(in.readLine());
+				break;
+			}
+			catch(Exception e) {
+				System.out.println("Not a valid repair ID");
+				System.out.println(e);
+				continue;
+			}
+		}
+		
+		// get hotelID
+		while(true) {
+			System.out.print("Input hotel ID: ");
+			try {
+				hotelID = Integer.parseInt(in.readLine());
+				break;
+			}
+			catch(Exception e) {
+				System.out.println("Not a valid hotel ID");
+				System.out.println(e);
+				continue;
+			}
+		}
+
+		// get roomNo
+		while(true) {
+			System.out.print("Input room number: ");
+			try {
+				roomNo = Integer.parseInt(in.readLine());
+				break;
+			}
+			catch(Exception e) {
+				System.out.println("Not a valid room number");
+				System.out.println(e);
+				continue;
+			}
+		}
+
+		// get mCompany
+		while(true) {
+			System.out.print("Input maintenance company ID: ");
+			try {
+				mCompany = Integer.parseInt(in.readLine());
+				break;
+			}
+			catch(Exception e) {
+				System.out.println("Not a valid maintenance company ID");
+				System.out.println(e);
+				continue;
+			}
+		}
+
+		// get repairDate
+		while(true) {
+			System.out.print("Input repair date: ");
+			try {
+				SimpleDateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");
+				repairDate = dateFormat.parse(in.readLine());
+				break;
+			}
+			catch(Exception e) {
+				System.out.println("Not a valid repair date");
+				System.out.println(e);
+				continue;
+			}
+		}
+
+		// get description
+		while(true) {
+			System.out.print("Input repair description: ");
+			try {
+				description = in.readLine();
+				break;
+			}
+			catch(Exception e) {
+				System.out.println("Not a valid description");
+				System.out.println(e);
+				continue;
+			}
+		}
+
+		// get repairType
+		while(true) {
+			System.out.print("Input repair type: ");
+			try {
+				repairType = in.readLine();
+				if (repairType.length() <= 0 || repairType.length() > 10) {
+					throw new RuntimeException("Repair type cannot be 0 letters or longer than 10");
+				}
+				break;
+			}
+			catch(Exception e) {
+				System.out.println(e);
+				continue;
+			}
+		}
+
+		// insert query
+		try {
+			String esqlQuery = "INSERT INTO Repair(rID, hotelID, roomNo, mCompany, repairDate, description, repairType) VALUES (" + rID + ", \'" + hotelID + "\', \'" + roomNo + "\', \'" + mCompany + "\', \'" + repairDate + "\', \'" + description + "\', \'" + repairType + "\');";
+			esql.executeUpdate(esqlQuery);
+		}
+		catch(Exception e) {
+			System.err.println(e.getMessage());
+		}
+
    }//end addRepair
 
    public static void bookRoom(DBProject esql){
