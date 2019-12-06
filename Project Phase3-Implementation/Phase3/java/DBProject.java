@@ -257,7 +257,11 @@ public class DBProject {
       return input;
    }//end readChoice
 
-   
+   public enum Gender {
+      M,
+      F
+   }
+
    public static void addCustomer(DBProject esql){
 	  // Given customer details add the customer in the DB 
       // Your code goes here.
@@ -267,7 +271,7 @@ public class DBProject {
       String address;
       int phoneNum;
       Date dob;
-      String gender;
+      Gender gender;
 
       //get customerID
       while(true) {
@@ -356,7 +360,7 @@ public class DBProject {
          try {
             gender = in.readLine();
             if (gender.length() <= 0 || gender.length() > 32) {
-               throw new RuntimeException("Address cannot be 0 letters or longer than 32");
+               throw new RuntimeException("Gender cannot be 0 letters or longer than 32");
             }
             break;
          }
