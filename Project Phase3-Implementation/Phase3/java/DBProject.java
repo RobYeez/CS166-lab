@@ -422,7 +422,7 @@ public class DBProject {
 
 		// insert query
 		try {
-			String esqlQuery = "INSERT INTO Room(hotelID, roomNo, roomType) VALUES (hotelID, roomNo, roomType)";
+			String esqlQuery = "INSERT INTO Room (hotelID, roomNo, roomType) VALUES (" + hotelID + ", \'" + roomNo + "\', \'" + roomType + "\')";
 			esql.executeUpdate(esqlQuery);
 		}
 		catch(Exception e) {
