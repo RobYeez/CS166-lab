@@ -260,11 +260,11 @@ public class DBProject {
 	  // Given customer details add the customer in the DB 
       // Your code goes here.
       int custID;
-      string fname;
-      string lname;
-      string address;
+      String fname;
+      String lname;
+      String address;
       int phoneNum;
-      string gender;
+      String gender;
 
       //get customerID
       System.out.print("Input Customer ID");
@@ -273,8 +273,10 @@ public class DBProject {
             custID = Integer.parseInt(in.readLine());
             break;
          }
-         catch(Execption e) {
+         catch(Exception e) {
             System.out.println("Not a valid Customer ID");
+            System.out.println(e);
+            continue;
          }
       }
       //get first name
@@ -287,7 +289,7 @@ public class DBProject {
             }
             break;
          }
-         catch(Execption e) {
+         catch(Exception e) {
             System.out.println(e);
          }
       }
@@ -300,7 +302,7 @@ public class DBProject {
             }
             break;
          }
-         catch(Execption e) {
+         catch(Exception e) {
             System.out.println(e);
          }
       }
@@ -313,7 +315,7 @@ public class DBProject {
             }
             break;
          }
-         catch(Execption e) {
+         catch(Exception e) {
             System.out.println(e);
          }
       }
@@ -323,8 +325,9 @@ public class DBProject {
             phonenum = Integer.parseInt(in.readLine());
             break;
          }
-         catch(Execption e) {
+         catch(Exception e) {
             System.out.println("Not a valid Phone number");
+            
          }
       }
       //get gender
@@ -336,13 +339,13 @@ public class DBProject {
             }
             break;
          }
-         catch(Execption e) {
+         catch(Exception e) {
             System.out.println(e);
          }
       }
       //we have all the inputs ... need to insert into query now   
    
-      string esqlQuery = "INSERT INTO Customer(custID, fname, lname, address, phoneNum ,gender) VALUES (custID, fname, lname, address, phoneNum, gender)";
+      String esqlQuery = "INSERT INTO Customer(custID, fname, lname, address, phoneNum ,gender) VALUES (custID, fname, lname, address, phoneNum, gender)";
       esql.executeQuery(esqlQuery);
      
    }//end addCustomer
