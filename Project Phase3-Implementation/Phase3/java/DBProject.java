@@ -457,7 +457,7 @@ public class DBProject {
          }
       }
       try {
-         String esqlQuery = "INSERT INTO MaintenanceCompany(cmpID, name, address, isCerfitied) VALUES (" + cmpID + " , \' " + name + " \' , \' " + address + " \', " + isCertified + " );";
+         String esqlQuery = "INSERT INTO MaintenanceCompany(cmpID, name, address, isCertified) VALUES (" + cmpID + " , \' " + name + " \' , \' " + address + " \', " + isCertified + " );";
          esql.executeUpdate(esqlQuery);
       }   
       catch(Exception e) {
