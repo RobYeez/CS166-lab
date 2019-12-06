@@ -344,10 +344,13 @@ public class DBProject {
          }
       }
       //we have all the inputs ... need to insert into query now   
-   
-      String esqlQuery = "INSERT INTO Customer(custID, fname, lname, address, phoneNum ,gender) VALUES (custID, fname, lname, address, phoneNum, gender)";
-      esql.executeQuery(esqlQuery);
-     
+      try {
+         String esqlQuery = "INSERT INTO Customer(custID, fname, lname, address, phoneNum ,gender) VALUES (custID, fname, lname, address, phoneNum, gender)";
+      }   
+      catch(Exception e) {
+         esql.executeQuery(esqlQuery);
+         System.err.println(e.getMessage());  
+      }
    }//end addCustomer
 
    public static void addRoom(DBProject esql){
