@@ -258,8 +258,9 @@ public class DBProject {
    }//end readChoice
 
    public enum Gender {
-      M,
-      F
+      Male,
+      Female,
+      Other
    }
 
    public static void addCustomer(DBProject esql){
@@ -359,7 +360,7 @@ public class DBProject {
       System.out.print("Input Gender: ");
          try {
             gender = in.readLine();
-            if (gender.length() <= 0 || gender.length() > 32) {
+            if (gender != "Male" || gender != "Female" || gender != "Other") {
                throw new RuntimeException("Gender cannot be 0 letters or longer than 32");
             }
             break;
