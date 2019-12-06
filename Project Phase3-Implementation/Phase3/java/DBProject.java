@@ -265,7 +265,7 @@ public class DBProject {
       String lname;
       String address;
       int phoneNum;
-      String dob;
+      Date dob;
       String gender;
 
       //get customerID
@@ -341,6 +341,7 @@ public class DBProject {
             try {
                SimpleDateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");
                dob = dateFormat.parse(in.readLine());
+               dob = dob.toString();
                break;
             }
             catch(Exception e) {
