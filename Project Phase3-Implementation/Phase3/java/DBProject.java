@@ -257,7 +257,7 @@ public class DBProject {
       return input;
    }//end readChoice
 
-   public enum Gender {
+   enum Gender {
       Male,
       Female,
       Other
@@ -272,7 +272,7 @@ public class DBProject {
       String address;
       int phoneNum;
       Date dob;
-      Gender gender;
+      String gender;
 
       //get customerID
       while(true) {
@@ -370,7 +370,7 @@ public class DBProject {
       }
       //we have all the inputs ... need to insert into query now   
       try {
-         String esqlQuery = "INSERT INTO Customer(customerID, fname, lname, Address, phNo, DOB, gender) VALUES (" + customerID + " , \' " + fname + " \' , \' " + lname + " \', \' " + address + " \', " + phoneNum + " , \' " + dob + " \' , \' "+ gender +" \');";
+         String esqlQuery = "INSERT INTO Customer(customerID, fname, lname, Address, phNo, DOB, gender) VALUES (" + customerID + " , \' " + fname + " \' , \' " + lname + " \', \' " + address + " \', " + phoneNum + " , \' " + dob + " \' , \' "+ Gender.gender +" \');";
          esql.executeUpdate(esqlQuery);
       }   
       catch(Exception e) {
