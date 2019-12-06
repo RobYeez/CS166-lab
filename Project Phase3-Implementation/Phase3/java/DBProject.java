@@ -764,7 +764,7 @@ public class DBProject {
                   }
                   //insert into Booking
                   try {
-                     esqlQuery = "INSERT INTO Booking(bID, customer, hotelID, roomNo, bookingDate, noOfPeople, price) VALUES (" + bID + " , " + customerID + " , " + hotelID + ", " + roomNo + ", \' " + bookingDate + " \' , " + noOfPeople + ", " + price + ") WHERE " + hotelID + " = " + R.hotelID + " AND " + roomNo + " = " + R.roomNo + " AND " + customerID + " = " + C.customerID + " FROM Customer C, Room R;";
+                     esqlQuery = "INSERT INTO Booking(bID, customer, hotelID, roomNo, bookingDate, noOfPeople, price) VALUES (" + bID + " , " + customerID + " , " + hotelID + ", " + roomNo + ", \' " + bookingDate + " \' , " + noOfPeople + ", " + price + ") WHERE " + hotelID + " = " + Room.hotelID + " AND " + roomNo + " = " + Room.roomNo + " AND " + customerID + " = " + Customer.customerID + " FROM Customer , Room ;";
                      esql.executeUpdate(esqlQuery);
                   }
                   catch(Exception e) {
@@ -801,7 +801,7 @@ public class DBProject {
    int SSN;
    int roomNo;
    int repairID;
-   Date date;
+   Date bookingDate;
 
    //get hotelID
    while(true) {
