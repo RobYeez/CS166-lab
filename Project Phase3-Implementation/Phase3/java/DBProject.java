@@ -261,11 +261,11 @@ public class DBProject {
    public static void addCustomer(DBProject esql){
 	  // Given customer details add the customer in the DB 
       // Your code goes here.
-      int customerID;
+      Int customerID;
       String fname;
       String lname;
       String address;
-      int phoneNum;
+      Int phoneNum;
       Date dob;
       String gender;
 
