@@ -385,13 +385,68 @@ public class DBProject {
    }//end addCustomer
 
    public static void addRoom(DBProject esql){
-	  // Given room details add the room in the DB
+	   	// Given room details add the room in the DB
       // Your code goes here.
-      // ...
-      // ...
+      int hotelID;
+      int roomNo;
+      String roomType;
+      
+      // get hotelID
+      while(true) {
+         System.out.print("Input Hotel ID: ");
+	 		try {
+	 			hotelID = Integer.parseInt(in.readLine());
+				break;
+			}
+			catch(Exception e) {
+				System.out.println("Not a valid hotel ID");
+				System.out.println(e);
+				continue;
+			}
+		}
+
+		// get roomNo
+		while(true) {
+			System.out.print("Input room number: ");
+			try {
+				roomNo = Integer.parseInt(in.readLine());
+				break;
+			}
+			catch(Exception e) {
+				System.out.println("Not a valid room number");
+				System.out.println(e);
+				continue;
+			}
+		}
+
+		// get roomType
+		while(true) {
+			System.out.print("Input room type: ");
+			try {
+				roomType = in.readLine();
+				if (roomType.length() <= 0 || roomType.length() > 10) {
+					throw new RuntimeException("Room Type cannot be 0 letters or longer than 10");
+				}
+				break;
+			}
+			catch(Exception e) {
+				System.out.println(e);
+				continue;
+			}
+		}
+
+		// insert query
+		try {
+			String esqlQuery = "INSERT INTO Room (hotelID, roomNo, roomType) VALUES (" + hotelID + ", \'" + roomNo + "\', \'" + roomType + "\')";
+			esql.executeUpdate(esqlQuery);
+		}
+		catch(Exception e) {
+			System.err.println(e.getMessage());
+		}
    }//end addRoom
 
    public static void addMaintenanceCompany(DBProject esql){
+
       // Given maintenance Company details add the maintenance company in the DB
       int cmpID;
       String name;
@@ -465,24 +520,144 @@ public class DBProject {
       }
 
       
+
+      	// Given maintenance Company details add the maintenance company in the DB
+      // ...
+      // .
    }//end addMaintenanceCompany
 
    public static void addRepair(DBProject esql){
-	  // Given repair details add repair in the DB
+	   	// Given repair details add repair in the DB
       // Your code goes here.
-      // ...
-      // ...
+      int rID;
+      int hotelID;
+      int roomNo;
+      int mCompany;
+      Date repairDate;
+      String description;
+      String repairType;
+		
+		// get rID
+		while(true) {
+			System.out.print("Input repair ID: ");
+			try {
+				rID = Integer.parseInt(in.readLine());
+				break;
+			}
+			catch(Exception e) {
+				System.out.println("Not a valid repair ID");
+				System.out.println(e);
+				continue;
+			}
+		}
+		
+		// get hotelID
+		while(true) {
+			System.out.print("Input hotel ID: ");
+			try {
+				hotelID = Integer.parseInt(in.readLine());
+				break;
+			}
+			catch(Exception e) {
+				System.out.println("Not a valid hotel ID");
+				System.out.println(e);
+				continue;
+			}
+		}
+
+		// get roomNo
+		while(true) {
+			System.out.print("Input room number: ");
+			try {
+				roomNo = Integer.parseInt(in.readLine());
+				break;
+			}
+			catch(Exception e) {
+				System.out.println("Not a valid room number");
+				System.out.println(e);
+				continue;
+			}
+		}
+
+		// get mCompany
+		while(true) {
+			System.out.print("Input maintenance company ID: ");
+			try {
+				mCompany = Integer.parseInt(in.readLine());
+				break;
+			}
+			catch(Exception e) {
+				System.out.println("Not a valid maintenance company ID");
+				System.out.println(e);
+				continue;
+			}
+		}
+
+		// get repairDate
+		while(true) {
+			System.out.print("Input repair date: ");
+			try {
+				SimpleDateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");
+				repairDate = dateFormat.parse(in.readLine());
+				break;
+			}
+			catch(Exception e) {
+				System.out.println("Not a valid repair date");
+				System.out.println(e);
+				continue;
+			}
+		}
+
+		// get description
+		while(true) {
+			System.out.print("Input repair description: ");
+			try {
+				description = in.readLine();
+				break;
+			}
+			catch(Exception e) {
+				System.out.println("Not a valid description");
+				System.out.println(e);
+				continue;
+			}
+		}
+
+		// get repairType
+		while(true) {
+			System.out.print("Input repair type: ");
+			try {
+				repairType = in.readLine();
+				if (repairType.length() <= 0 || repairType.length() > 10) {
+					throw new RuntimeException("Repair type cannot be 0 letters or longer than 10");
+				}
+				break;
+			}
+			catch(Exception e) {
+				System.out.println(e);
+				continue;
+			}
+		}
+
+		// insert query
+		try {
+			String esqlQuery = "INSERT INTO Repair(rID, hotelID, roomNo, mCompany, repairDate, description, repairType) VALUES (" + rID + ", \'" + hotelID + "\', \'" + roomNo + "\', \'" + mCompany + "\', \'" + repairDate + "\', \'" + description + "\', \'" + repairType + "\');";
+			esql.executeUpdate(esqlQuery);
+		}
+		catch(Exception e) {
+			System.err.println(e.getMessage());
+		}
+
    }//end addRepair
 
    public static void bookRoom(DBProject esql){
-	  // Given hotelID, roomNo and customer Name create a booking in the DB 
+	   	// Given hotelID, roomNo and customer Name create a booking in the DB 
       // Your code goes here.
       // ...
       // ...
    }//end bookRoom
 
    public static void assignHouseCleaningToRoom(DBProject esql){
-	  // Given Staff SSN, HotelID, roomNo Assign the staff to the room 
+	  		// Given Staff SSN, HotelID, roomNo Assign the staff to the room 
       // Your code goes here.
       // ...
       // ...
