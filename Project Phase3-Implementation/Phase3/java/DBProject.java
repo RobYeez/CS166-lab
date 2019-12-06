@@ -348,7 +348,7 @@ public class DBProject {
          String esqlQuery = "INSERT INTO Customer(custID, fname, lname, address, phoneNum ,gender) VALUES (custID, fname, lname, address, phoneNum, gender)";
       }   
       catch(Exception e) {
-         esql.executeQuery(esqlQuery);
+         esql.executeUpdate(esqlQuery);
          System.err.println(e.getMessage());  
       }
    }//end addCustomer
