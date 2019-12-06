@@ -371,34 +371,87 @@ public class DBProject {
    }//end addCustomer
 
    public static void addRoom(DBProject esql){
-	  // Given room details add the room in the DB
+	   	// Given room details add the room in the DB
       // Your code goes here.
-      // ...
-      // ...
+      int hotelID;
+      int roomNo;
+      String roomType;
+      
+      // get hotelID
+      while(true) {
+         System.out.print("Input Hotel ID: ");
+	 		try {
+	 			hotelID = Integer.parseInt(in.readLine());
+				break;
+			}
+			catch(Exception e) {
+				System.out.println("Not a valid hotel ID");
+				System.out.println(e);
+				continue;
+			}
+		}
+
+		// get roomNo
+		while(true) {
+			System.out.print("Input room number: ");
+			try {
+				roomNo = Integer.parseInt(in.readLine());
+				break;
+			}
+			catch(Exception e) {
+				System.out.println("Not a valid room number");
+				System.out.println(e);
+				continue;
+			}
+		}
+
+		// get roomType
+		while(true) {
+			System.out.print("Input room type: ");
+			try {
+				roomType = in.readLine();
+				if (roomType.length() <= 0 || roomType.length() > 10) {
+					throw new RuntimeException("Room Type cannot be 0 letters or longer than 10");
+				}
+				break;
+			}
+			catch(Exception e) {
+				System.out.println(e);
+			}
+		}
+
+		// insert query
+		try {
+			String esqlQuery = "INSERT INTO Room(hotelID, roomNo, roomType) VALUES (hotelID, roomNo, roomType)";
+			esql.executeUpdate(esqlQuery);
+		}
+		catch(Exception e) {
+			System.err.println(e.getMessage());
+		}
    }//end addRoom
 
    public static void addMaintenanceCompany(DBProject esql){
-      // Given maintenance Company details add the maintenance company in the DB
+      	// Given maintenance Company details add the maintenance company in the DB
       // ...
       // ...
    }//end addMaintenanceCompany
 
    public static void addRepair(DBProject esql){
-	  // Given repair details add repair in the DB
+	   	// Given repair details add repair in the DB
       // Your code goes here.
       // ...
       // ...
    }//end addRepair
 
    public static void bookRoom(DBProject esql){
-	  // Given hotelID, roomNo and customer Name create a booking in the DB 
+	   	// Given hotelID, roomNo and customer Name create a booking in the DB 
       // Your code goes here.
       // ...
       // ...
    }//end bookRoom
 
    public static void assignHouseCleaningToRoom(DBProject esql){
-	  // Given Staff SSN, HotelID, roomNo Assign the staff to the room 
+	  		// Given Staff SSN, HotelID, roomNo Assign the staff to the room 
       // Your code goes here.
       // ...
       // ...
