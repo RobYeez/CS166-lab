@@ -257,7 +257,12 @@ public class DBProject {
       return input;
    }//end readChoice
 
-   
+   enum Gender {
+      Male,
+      Female,
+      Other
+   }
+
    public static void addCustomer(DBProject esql){
 	  // Given customer details add the customer in the DB 
       // Your code goes here.
@@ -287,13 +292,14 @@ public class DBProject {
       System.out.print("Input First Name: ");
          try {
             fname = in.readLine();
-            if (fname.length() <= 0 || fname.length() > 32) {
-               throw new RuntimeException("First name cannot be 0 letters or longer than 32");
+            if (fname.length() <= 0 || fname.length() > 30) {
+               throw new RuntimeException("First name cannot be 0 letters or longer than 30");
             }
             break;
          }
          catch(Exception e) {
             System.out.println(e);
+            continue;
          }
       }
       //get last name
@@ -301,13 +307,14 @@ public class DBProject {
       System.out.print("Input Last Name: ");
          try {
             lname = in.readLine();
-            if (lname.length() <= 0 || lname.length() > 32) {
-               throw new RuntimeException("Last name cannot be 0 letters or longer than 32");
+            if (lname.length() <= 0 || lname.length() > 30) {
+               throw new RuntimeException("Last name cannot be 0 letters or longer than 30");
             }
             break;
          }
          catch(Exception e) {
             System.out.println(e);
+            continue;
          }
       }
       //get address
@@ -315,13 +322,14 @@ public class DBProject {
       System.out.print("Input Address: ");
          try {
             address = in.readLine();
-            if (address.length() <= 0 || address.length() > 32) {
-               throw new RuntimeException("Address cannot be 0 letters or longer than 32");
+            if (address.length() <= 0 || address.length() > 30) {
+               throw new RuntimeException("Address cannot be 0 letters or longer than 30");
             }
             break;
          }
          catch(Exception e) {
             System.out.println(e);
+            continue;
          }
       }
       //get phone number
@@ -334,6 +342,7 @@ public class DBProject {
          catch(Exception e) {
             System.out.println("Not a valid Phone number");
             System.out.println(e);
+            continue;
          }
       }
       //get DOB
@@ -342,12 +351,12 @@ public class DBProject {
             try {
                SimpleDateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");
                dob = dateFormat.parse(in.readLine());
-               // dob = dob.toString();
                break;
             }
             catch(Exception e) {
                System.out.println("Not a valid DOB");
                System.out.println(e);
+               continue;
             }
          }
       //get gender
@@ -355,18 +364,19 @@ public class DBProject {
       System.out.print("Input Gender: ");
          try {
             gender = in.readLine();
-            if (gender.length() <= 0 || gender.length() > 32) {
-               throw new RuntimeException("Address cannot be 0 letters or longer than 32");
+            if (!gender.equals("Male") && !gender.equals("Female") && !gender.equals("Other")) {
+               throw new RuntimeException("Gender can only be Male, Female, or Other");
             }
             break;
          }
          catch(Exception e) {
             System.out.println(e);
+            continue;
          }
       }
       //we have all the inputs ... need to insert into query now   
       try {
-         String esqlQuery = "INSERT INTO Customer(customerID, fname, lname, Address, phNo, DOB, gender) VALUES ('customerID', 'fname', 'lname', 'address', 'phoneNum', 'dob', 'gender')";
+         String esqlQuery = "INSERT INTO Customer(customerID, fname, lName, Address, phNo, DOB, gender) VALUES (" + customerID + ", \'"  + fname + "\', \'"  + lname + "\', \'" + address + "\', \'" + phoneNum + "\', \'" + dob + "\', \'" + gender + "\' );";
          esql.executeUpdate(esqlQuery);
       }   
       catch(Exception e) {
@@ -436,9 +446,84 @@ public class DBProject {
    }//end addRoom
 
    public static void addMaintenanceCompany(DBProject esql){
+
+      // Given maintenance Company details add the maintenance company in the DB
+      int cmpID;
+      String name;
+      String address;
+      String isCertified;
+
+      //get company id
+      while(true) {
+         System.out.print("Input Company ID: ");
+            try {
+               cmpID = Integer.parseInt(in.readLine());
+               break;
+            }
+            catch(Exception e) {
+               System.out.println("Not a valid Company ID");
+               System.out.println(e);
+               continue;
+            }
+      }
+      //get company name
+      while(true) {
+         System.out.print("Input Company Name: ");
+            try {
+               name = in.readLine();
+               if (name.length() <= 0 || name.length() > 30) {
+                  throw new RuntimeException("Company Name cannot be 0 letters or longer than 30");
+               }
+               break;
+            }
+            catch(Exception e) {
+               System.out.println(e);
+               continue;
+            }
+      }
+      //get address
+      while(true) {
+         System.out.print("Input Address: ");
+            try {
+               address = in.readLine();
+               if (address.length() <= 0 || address.length() > 30) {
+                  throw new RuntimeException("Address cannot be 0 letters or longer than 30");
+               }
+               break;
+            }
+            catch(Exception e) {
+               System.out.println(e);
+               continue;
+            }
+      }
+      //get isCertified
+      while(true) {
+         System.out.print("Is company certified?");
+         try {
+            isCertified = in.readLine();
+            if(!isCertified.equals("TRUE") && !isCertified.equals("FALSE")) {
+               throw new RuntimeException("Either TRUE or FALSE");
+            }
+            break;
+         }
+         catch(Exception e) {
+            System.out.println(e);
+            continue;
+         }
+      }
+      try {
+         String esqlQuery = "INSERT INTO MaintenanceCompany(cmpID, name, address, isCertified) VALUES (" + cmpID + " , \' " + name + " \' , \' " + address + " \', " + isCertified + " );";
+         esql.executeUpdate(esqlQuery);
+      }   
+      catch(Exception e) {
+         System.err.println(e.getMessage());  
+      }
+
+      
+
       	// Given maintenance Company details add the maintenance company in the DB
       // ...
-      // ...
+      // .
    }//end addMaintenanceCompany
 
    public static void addRepair(DBProject esql){
