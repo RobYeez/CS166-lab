@@ -299,6 +299,7 @@ public class DBProject {
          }
          catch(Exception e) {
             System.out.println(e);
+            continue;
          }
       }
       //get last name
@@ -313,6 +314,7 @@ public class DBProject {
          }
          catch(Exception e) {
             System.out.println(e);
+            continue;
          }
       }
       //get address
@@ -327,6 +329,7 @@ public class DBProject {
          }
          catch(Exception e) {
             System.out.println(e);
+            continue;
          }
       }
       //get phone number
@@ -339,6 +342,7 @@ public class DBProject {
          catch(Exception e) {
             System.out.println("Not a valid Phone number");
             System.out.println(e);
+            continue;
          }
       }
       //get DOB
@@ -352,6 +356,7 @@ public class DBProject {
             catch(Exception e) {
                System.out.println("Not a valid DOB");
                System.out.println(e);
+               continue;
             }
          }
       //get gender
@@ -366,6 +371,7 @@ public class DBProject {
          }
          catch(Exception e) {
             System.out.println(e);
+            continue;
          }
       }
       //we have all the inputs ... need to insert into query now   
@@ -402,6 +408,7 @@ public class DBProject {
             catch(Exception e) {
                System.out.println("Not a valid Company ID");
                System.out.println(e);
+               continue;
             }
       }
       //get company name
@@ -416,6 +423,7 @@ public class DBProject {
             }
             catch(Exception e) {
                System.out.println(e);
+               continue;
             }
       }
       //get isCertified
@@ -423,13 +431,14 @@ public class DBProject {
          System.out.print("Is company certified?");
          try {
             isCertified = Boolean.parseBoolean(in.readLine());
-            if(isCertified != "TRUE" && isCertified != "FALSE") {
+            if(isCertified == "TRUE" && isCertified != "FALSE") {
                throw new RuntimeException("Either TRUE or FALSE");
             }
             break;
          }
          catch(Exception e) {
             System.out.println(e);
+            continue;
          }
       }
       try {
