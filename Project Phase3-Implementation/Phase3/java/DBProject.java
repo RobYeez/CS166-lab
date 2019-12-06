@@ -360,7 +360,7 @@ public class DBProject {
       System.out.print("Input Gender: ");
          try {
             gender = in.readLine();
-            if (gender != "Male" && gender != "Female" && gender != "Other") {
+            if (!gender.equals("Male") && !gender.equals("Female") && !gender.equals("Other")) {
                throw new RuntimeException("Gender can only be Male, Female, or Other");
             }
             break;
