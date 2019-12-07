@@ -1053,7 +1053,8 @@ public class DBProject {
 // "SELECT B.price FROM Booking B WHERE B.bookingDate >= '" + date1 + "' AND B.bookingDate <= '" + date2 + "' ORDER BY B.price DESC LIMIT '" + num + "';";
 
       try {
-         String esqlQuery = "SELECT M.name FROM MaintenanceCompany M, Repair R WHERE R.mCompany = M.cmpID ORDER BY (SELECT COUNT(R1.mCompany) FROM Repair R1, MaintenanceCompany M2 WHERE M2.cmpID = R1.mCompany) DESC LIMIT '" + num + "';";
+         // String esqlQuery = "SELECT M.name FROM MaintenanceCompany M, Repair R WHERE R.mCompany = M.cmpID ORDER BY (SELECT R1.mCompany, COUNT(*) as c FROM Repair R1, MaintenanceCompany M2 WHERE M2.cmpID = R1.mCompany) DESC LIMIT '" + num + "';";
+         String esqlQuery = "SELECT M.name, COUNT(*) FROM MaintenanceCompany M, Repair R WHERE M.cmpID = R.mCompany ORDER BY COUNT(*) DESC";
          esql.executeQuery(esqlQuery);
       }
       catch(Exception e) {
