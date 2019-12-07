@@ -798,30 +798,28 @@ public class DBProject {
    //does repair mean things that have been repaired and then request mean ask to repair?
    public static void repairRequest(DBProject esql){
 	  // Given a hotelID, Staff SSN, roomNo, repairID , date create a repair request in the DB
-   int hotelID;
+   int reqID;
    int SSN;
-   int roomNo;
    int repairID;
    Date requestDate;
+   String description;
 
-   /*
-   //get hotelID
+   //get reqID
    while(true) {
-      System.out.print("Input HotelID: ");
+      System.out.print("Input RequestID: ");
       try {
-         hotelID = Integer.parseInt(in.readLine());
+         reqID = Integer.parseInt(in.readLine());
          break;
       }
       catch(Exception e) {
-         System.out.println("Invalid HotelID");
+         System.out.println("Not a valid ReqID");
          System.out.println(e);
          continue;
       }
    }
-   */
    //get SSN
    while(true) {
-      System.out.print("Input SSN: ");
+      System.out.print("Input manger ID: ");
       try {
          SSN = Integer.parseInt(in.readLine());
          break;
@@ -831,22 +829,7 @@ public class DBProject {
          System.out.println(e);
          continue;
       }
-   }
-   /*
-   //get roomNo
-   while(true) {
-      System.out.print("Input RoomNo: ");
-      try {
-         roomNo = Integer.parseInt(in.readLine());
-         break;
-      }
-      catch(Exception e) {
-         System.out.println("Not a valid RoomNo");
-         System.out.println(e);
-         continue;
-      }
-   }
-   */
+   }   
    //get repairID
    while(true) {
       System.out.print("Input RepairID: ");
@@ -874,11 +857,6 @@ public class DBProject {
          continue;
       }
    }
-   //should get description, repair type, and Mcompany
-   String description;
-   String repairType; //10 chars
-   int mCompany;
-   int reqID;
    //get Description
    while(true) {
       System.out.print("Input repair description: ");
@@ -892,37 +870,8 @@ public class DBProject {
          continue;
       }
    }
-   //get reqID
-   while(true) {
-      System.out.print("Input RequestID: ");
-      try {
-         reqID = Integer.parseInt(in.readLine());
-         break;
-      }
-      catch(Exception e) {
-         System.out.println("Not a valid ReqID");
-         System.out.println(e);
-         continue;
-      }
-   }
-   //get repairType
-/*
-   //get mCompany
-   while(true) {
-      System.out.print("Input mCompany ID: ");
-      try {
-         mCompany = Integer.parseInt(in.readLine());
-         break;
-      }
-      catch(Exception e) {
-         System.out.println("Not a valid mCompany ID");
-         System.out.println(e);
-         continue;
-      }
-   }
-*/
-   //only manager can make repair request
-   try {
+
+  try {
       String esqlQuery = "INSERT INTO Request(reqID, managerID, repairID, requestDate, description) VALUES( " + reqID + ", " + SSN + ", " + repairID + ",\' " + requestDate + " \', \' " + description + " \');";
       esql.executeUpdate(esqlQuery);
    }
@@ -954,9 +903,61 @@ public class DBProject {
    
    public static void topKHighestRoomPriceForADateRange(DBProject esql){
 	  // List Top K Rooms with the highest price for a given date range
-      // Your code goes here.
-      // ...
-      // ...
+      Date date1;
+      Date date2;
+      int num;
+
+      //date1
+      while(true) {
+         System.out.print("Input Start Serch Date: ");
+         try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");
+            date1 = dateFormat.parse(in.readLine());
+            break;
+         }
+         catch(Exception e) {
+            System.out.println("Not a valid date");
+            System.out.println(e);
+            continue;
+         }
+      }
+
+      //date2
+      while(true) {
+         System.out.print("Input End Search Date: ");
+         try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");
+            date2 = dateFormat.parse(in.readLine());
+            break;
+         }
+         catch(Exception e) {
+            System.out.println("Not a valid date");
+            System.out.println(e);
+            continue;
+         }
+      }
+      //top num
+      while(true) {
+         System.out.print("Input Top Number: ");
+         try {
+            num = Integer.parseInt(in.readLine());
+            break;
+         }
+         catch(Exception e) {
+            System.out.println("Not a valid RepairID");
+            System.out.println(e);
+            continue;
+         }
+      }
+      try {
+         String esqlQuery = "SELECT TOP num price FROM Booking B WHERE bookingDate >=  " + date1 + " AND bookingDate <= " + date2 + ");";
+         esql.executeQuery(esqlQuery);
+      }
+      catch(Exception e) {
+         System.out.println(e);
+      }
+
+
    }//end topKHighestRoomPriceForADateRange
    
    public static void topKHighestPriceBookingsForACustomer(DBProject esql){
