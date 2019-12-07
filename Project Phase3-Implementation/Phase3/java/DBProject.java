@@ -804,6 +804,7 @@ public class DBProject {
    int repairID;
    Date requestDate;
 
+   /*
    //get hotelID
    while(true) {
       System.out.print("Input HotelID: ");
@@ -817,6 +818,7 @@ public class DBProject {
          continue;
       }
    }
+   */
    //get SSN
    while(true) {
       System.out.print("Input SSN: ");
@@ -830,6 +832,7 @@ public class DBProject {
          continue;
       }
    }
+   /*
    //get roomNo
    while(true) {
       System.out.print("Input RoomNo: ");
@@ -843,6 +846,7 @@ public class DBProject {
          continue;
       }
    }
+   */
    //get repairID
    while(true) {
       System.out.print("Input RepairID: ");
@@ -858,7 +862,7 @@ public class DBProject {
    }
    //get date
    while(true) {
-      System.out.print("Input Date of Booking: ");
+      System.out.print("Input Date of Repair: ");
       try {
          SimpleDateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");
          requestDate = dateFormat.parse(in.readLine());
@@ -888,8 +892,21 @@ public class DBProject {
          continue;
       }
    }
+   //get reqID
+   while(true) {
+      System.out.print("Input RequestID: ");
+      try {
+         reqID = Integer.parseInt(in.readLine());
+         break;
+      }
+      catch(Exception e) {
+         System.out.println("Not a valid ReqID");
+         System.out.println(e);
+         continue;
+      }
+   }
    //get repairType
-
+/*
    //get mCompany
    while(true) {
       System.out.print("Input mCompany ID: ");
@@ -903,6 +920,7 @@ public class DBProject {
          continue;
       }
    }
+*/
    //only manager can make repair request
    try {
       String esqlQuery = "INSERT INTO Request(reqID, managerID, repairID, requestDate, description) VALUES( " + reqID + ", " + SSN + ", " + repairID + ", " + requestDate + ", /' " + description + " /';)";
