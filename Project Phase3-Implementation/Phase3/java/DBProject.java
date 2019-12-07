@@ -263,7 +263,7 @@ public class DBProject {
       Other
    }
 
-   public static void addCustomer(DBProject esql){
+   public static void addCustomer(DBProject esql){ //1
 	  // Given customer details add the customer in the DB 
       // Your code goes here.
       int customerID;
@@ -384,7 +384,7 @@ public class DBProject {
       }
    }//end addCustomer
 
-   public static void addRoom(DBProject esql){
+   public static void addRoom(DBProject esql){ //2
 	   	// Given room details add the room in the DB
       // Your code goes here.
       int hotelID;
@@ -445,7 +445,7 @@ public class DBProject {
 		}
    }//end addRoom
 
-   public static void addMaintenanceCompany(DBProject esql){
+   public static void addMaintenanceCompany(DBProject esql){ //3
 
       // Given maintenance Company details add the maintenance company in the DB
       int cmpID;
@@ -526,7 +526,7 @@ public class DBProject {
       // .
    }//end addMaintenanceCompany
 
-   public static void addRepair(DBProject esql){
+   public static void addRepair(DBProject esql){ //4
 	   	// Given repair details add repair in the DB
       // Your code goes here.
       int rID;
@@ -649,7 +649,7 @@ public class DBProject {
 
    }//end addRepair
 
-   public static void bookRoom(DBProject esql){
+   public static void bookRoom(DBProject esql){ //5
 	   	// Given hotelID, roomNo and customer Name create a booking in the DB 
       int hotelID;
       int roomNo;
@@ -787,7 +787,7 @@ public class DBProject {
       }  
    }//end bookRoom
 
-   public static void assignHouseCleaningToRoom(DBProject esql){
+   public static void assignHouseCleaningToRoom(DBProject esql){ //6
 	  		// Given Staff SSN, HotelID, roomNo Assign the staff to the room 
       // Your code goes here.
       // ...
@@ -796,7 +796,7 @@ public class DBProject {
    
    //there is an addRequest ... would you request
    //does repair mean things that have been repaired and then request mean ask to repair?
-   public static void repairRequest(DBProject esql){
+   public static void repairRequest(DBProject esql){ //7
 	  // Given a hotelID, Staff SSN, roomNo, repairID , date create a repair request in the DB
    int reqID;
    int SSN;
@@ -881,27 +881,27 @@ public class DBProject {
 
    }//end repairRequest
    
-   public static void numberOfAvailableRooms(DBProject esql){
+   public static void numberOfAvailableRooms(DBProject esql){ //8
 	  // Given a hotelID, get the count of rooms available 
       // Your code goes here.
       // ...
       // ...
    }//end numberOfAvailableRooms
    
-   public static void numberOfBookedRooms(DBProject esql){
+   public static void numberOfBookedRooms(DBProject esql){ //9
 	  // Given a hotelID, get the count of rooms booked
 
 
    }//end numberOfBookedRooms
    
-   public static void listHotelRoomBookingsForAWeek(DBProject esql){
+   public static void listHotelRoomBookingsForAWeek(DBProject esql){ //10
 	  // Given a hotelID, date - list all the rooms available for a week(including the input date) 
       // Your code goes here.
       // ...
       // ...
    }//end listHotelRoomBookingsForAWeek
    
-   public static void topKHighestRoomPriceForADateRange(DBProject esql){
+   public static void topKHighestRoomPriceForADateRange(DBProject esql){ //11
 	  // List Top K Rooms with the highest price for a given date range
       Date date1;
       Date date2;
@@ -923,7 +923,7 @@ public class DBProject {
       }
 
       //date2
-      while(true) {
+      while(true) { 
          System.out.print("Input End Search Date: ");
          try {
             SimpleDateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");
@@ -960,35 +960,35 @@ public class DBProject {
 
    }//end topKHighestRoomPriceForADateRange
    
-   public static void topKHighestPriceBookingsForACustomer(DBProject esql){
+   public static void topKHighestPriceBookingsForACustomer(DBProject esql){ //12
 	  // Given a customer Name, List Top K highest booking price for a customer 
       // Your code goes here.
       // ...
       // ...
    }//end topKHighestPriceBookingsForACustomer
    
-   public static void totalCostForCustomer(DBProject esql){
+   public static void totalCostForCustomer(DBProject esql){ //13
 	  // Given a hotelID, customer Name and date range get the total cost incurred by the customer
       // Your code goes here.
       // ...
       // ...
    }//end totalCostForCustomer
    
-   public static void listRepairsMade(DBProject esql){
+   public static void listRepairsMade(DBProject esql){ //14
 	  // Given a Maintenance company name list all the repairs along with repairType, hotelID and roomNo
       // Your code goes here.
       // ...
       // ...
    }//end listRepairsMade
    
-   public static void topKMaintenanceCompany(DBProject esql){
+   public static void topKMaintenanceCompany(DBProject esql){ //15
 	  // List Top K Maintenance Company Names based on total repair count (descending order)
       // Your code goes here.
       // ...
       // ...
    }//end topKMaintenanceCompany
    
-   public static void numberOfRepairsForEachRoomPerYear(DBProject esql){
+   public static void numberOfRepairsForEachRoomPerYear(DBProject esql){ //16
 	  // Given a hotelID, roomNo, get the count of repairs per year
       // Your code goes here.
       // ...
