@@ -923,7 +923,7 @@ public class DBProject {
 */
    //only manager can make repair request
    try {
-      String esqlQuery = "INSERT INTO Request(reqID, managerID, repairID, requestDate, description) VALUES( " + reqID + ", " + SSN + ", " + repairID + ",\' " + requestDate + " \', \' " + description + " \'\n;)";
+      String esqlQuery = "INSERT INTO Request(reqID, managerID, repairID, requestDate, description) VALUES( " + reqID + ", " + SSN + ", " + repairID + ",\' " + requestDate + " \', \' " + description + " \');";
       esql.executeUpdate(esqlQuery);
    }
    catch(Exception e) {
