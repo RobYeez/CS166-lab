@@ -1130,7 +1130,7 @@ public class DBProject {
          }
       }
       try {
-         String esqlQuery = "SELECT B.price, B.roomNo FROM Booking B WHERE B.bookingDate >= '" + date1 + "' AND B.bookingDate <= '" + date2 + "' ORDER BY B.price DESC LIMIT '" + num + "';";
+         String esqlQuery = "SELECT B.price, B.roomNo, B.hotelID FROM Booking B WHERE B.bookingDate >= '" + date1 + "' AND B.bookingDate <= '" + date2 + "' ORDER BY B.price DESC LIMIT '" + num + "';";
          esql.executeQuery(esqlQuery);
       }
       catch(Exception e) {
