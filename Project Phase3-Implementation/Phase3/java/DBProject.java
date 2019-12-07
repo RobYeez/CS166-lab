@@ -818,7 +818,7 @@ public class DBProject {
 			}
 		}
 
-		// get inputDate and endDate
+		// get inputDate and endDate     
       while(true) {
 			System.out.print("Enter input date: ");
 			try {
