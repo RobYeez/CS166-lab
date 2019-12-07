@@ -1037,9 +1037,24 @@ public class DBProject {
    
    public static void topKMaintenanceCompany(DBProject esql){ //15
 	  // List Top K Maintenance Company Names based on total repair count (descending order)
-      // Your code goes here.
-      // ...
-      // ...
+      int num;
+      while(true) {
+         System.out.print("Input Top Number: ");
+         try {
+            num = Integer.parseInt(in.readLine());
+            break;
+         }
+         catch(Exception e) {
+            System.out.println("Not a valid RepairID");
+            System.out.println(e);
+            continue;
+         }
+      }
+// "SELECT B.price FROM Booking B WHERE B.bookingDate >= '" + date1 + "' AND B.bookingDate <= '" + date2 + "' ORDER BY B.price DESC LIMIT '" + num + "';";
+
+      try {
+         String esqlQuery = "SELECT M.name FROM MaintenanceCompany M, Repair R WHERE R.mCompany = M.cmpID ORDER BY (SELECT R1.mCompany FROM Repair R1) DESC LIMIT '" + num + "';";
+      }
    }//end topKMaintenanceCompany
    
    public static void numberOfRepairsForEachRoomPerYear(DBProject esql){ //16
