@@ -969,7 +969,7 @@ public class DBProject {
 		
 		// insert query
 		try {
-			String esqlQuery = "SELECT COUNT(*) FROM Room r WHERE r.hotelID = " + hotelID + " AND r.roomNo IN (SELECT b.roomNo FROM Booking b);";
+			String esqlQuery = "SELECT COUNT(*) FROM Room r WHERE r.hotelID = " + hotelID + " AND r.roomNo NOT IN (SELECT b.roomNo FROM Booking b WHERE b.hotelID = " + hotelID + ");";
 			esql.executeQuery(esqlQuery);
 		}
 		catch(Exception e) {
@@ -1000,7 +1000,7 @@ public class DBProject {
 		
 		// insert query
 		try {
-			String esqlQuery = "SELECT COUNT(*) FROM Room r WHERE r.hotelID = " + hotelID + " AND r.roomNo NOT IN (SELECT b.roomNo FROM Booking b);";
+			String esqlQuery = "SELECT COUNT(*) FROM Room r WHERE r.hotelID = " + hotelID + " AND r.roomNo IN (SELECT b.roomNo FROM Booking b WHERE b.hotelID = " + hotelID + ");";
 			esql.executeQuery(esqlQuery);
 		}
 		catch(Exception e) {
