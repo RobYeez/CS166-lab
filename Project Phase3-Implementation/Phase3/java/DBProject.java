@@ -263,7 +263,7 @@ public class DBProject {
       Other
    }
 
-   public static void addCustomer(DBProject esql){
+   public static void addCustomer(DBProject esql){ //1
 	  // Given customer details add the customer in the DB 
       // Your code goes here.
       int customerID;
@@ -384,7 +384,7 @@ public class DBProject {
       }
    }//end addCustomer
 
-   public static void addRoom(DBProject esql){
+   public static void addRoom(DBProject esql){ //2
 	   	// Given room details add the room in the DB
       // Your code goes here.
       int hotelID;
@@ -445,7 +445,7 @@ public class DBProject {
 		}
    }//end addRoom
 
-   public static void addMaintenanceCompany(DBProject esql){
+   public static void addMaintenanceCompany(DBProject esql){ //3
 
       // Given maintenance Company details add the maintenance company in the DB
       int cmpID;
@@ -526,7 +526,7 @@ public class DBProject {
       // .
    }//end addMaintenanceCompany
 
-   public static void addRepair(DBProject esql){
+   public static void addRepair(DBProject esql){ //4
 	   	// Given repair details add repair in the DB
       // Your code goes here.
       int rID;
@@ -649,84 +649,420 @@ public class DBProject {
 
    }//end addRepair
 
-   public static void bookRoom(DBProject esql){
+   public static void bookRoom(DBProject esql){ //5
 	   	// Given hotelID, roomNo and customer Name create a booking in the DB 
-      // Your code goes here.
-      // ...
-      // ...
+      int hotelID;
+      int roomNo;
+      int customerID;
+      Date bookingDate;
+
+      //get hotelID
+      while(true) {
+			System.out.print("Input Hotel ID: ");
+			try {
+				hotelID = Integer.parseInt(in.readLine());
+				break;
+			}
+			catch(Exception e) {
+				System.out.println("Not a valid Hotel ID");
+				System.out.println(e);
+				continue;
+			}
+      }
+      //get roomNo
+      while(true) {
+			System.out.print("Input Room Number: ");
+			try {
+				roomNo = Integer.parseInt(in.readLine());
+				break;
+			}
+			catch(Exception e) {
+				System.out.println("Not a valid Room Number");
+				System.out.println(e);
+				continue;
+			}
+      }
+      //get customer name
+      while(true) {
+			System.out.print("Input Customer ID: ");
+			try {
+				customerID = Integer.parseInt(in.readLine());
+				break;
+			}
+			catch(Exception e) {
+				System.out.println("Not a valid Customer ID");
+				System.out.println(e);
+				continue;
+			}
+      }
+      //get booking Date
+      while(true) {
+			System.out.print("Input Date of Booking: ");
+			try {
+				SimpleDateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");
+				bookingDate = dateFormat.parse(in.readLine());
+				break;
+			}
+			catch(Exception e) {
+				System.out.println("Not a valid date");
+				System.out.println(e);
+				continue;
+			}
+		}
+      //book room ... should check if room is open first ... and then if it is open then book
+      try {
+         String esqlQuery = "SELECT bookingDate, roomNo, hotelID FROM Booking WHERE hotelID =  " + hotelID + "  AND roomNo = " + roomNo + " AND bookingDate = \'" + bookingDate + "\'\n ;";
+         String input;
+         if (esql.executeQuery(esqlQuery) == 0) {
+            while(true) {
+               System.out.println("Room is open, would you like to reserve?");
+               input = in.readLine();
+               if (input.equals("Y")) {
+                  //need new info to put in... bID, etc.
+                  //bookingID
+                  int bID;
+                  int noOfPeople;
+                  int price;
+                  //get bID
+                  while(true) {
+                     System.out.print("Input Booking ID: ");
+                     try {
+                        bID = Integer.parseInt(in.readLine());
+                        break;
+                     }
+                     catch(Exception e) {
+                        System.out.println("Not a valid Booking ID");
+                        System.out.println(e);
+                        continue;
+                     }
+                  }
+                  //get noOfPeople
+                  while(true) {
+                     System.out.print("Input Number of People: ");
+                     try {
+                        noOfPeople = Integer.parseInt(in.readLine());
+                        break;
+                     }
+                     catch(Exception e) {
+                        System.out.println("Not a valid Number of People");
+                        System.out.println(e);
+                        continue;
+                     }
+                  }
+                  //get price? not sure why it is user inputted...lmao
+                  while(true) {
+                     System.out.print("Input Price: ");
+                     try {
+                        price = Integer.parseInt(in.readLine());
+                        break;
+                     }
+                     catch(Exception e) {
+                        System.out.println("Not a valid Price");
+                        System.out.println(e);
+                        continue;
+                     }
+                  }
+                  //insert into Booking
+                  try {
+                     esqlQuery = "INSERT INTO Booking(bID, customer, hotelID, roomNo, bookingDate, noOfPeople, price) VALUES (" + bID + " , " + customerID + " , " + hotelID + ", " + roomNo + ", \' " + bookingDate + " \' , " + noOfPeople + ", " + price + ") "; //FROM FROM Customer C, Room R WHERE " + hotelID + " = " + R.hotelID + " AND " + roomNo + " = " + R.roomNo + " AND " + customerID + " = " + C.customerID + ";
+                     esql.executeUpdate(esqlQuery);
+                     break;
+                  }
+                  catch(Exception e) {
+                     System.err.println(e.getMessage());
+                  }
+               }
+               else if (input.equals("N")) {
+                  System.out.println("Room booking canceled");
+                  break;
+               }
+               else {
+                  System.out.println("Invalid input");
+               }    
+            }
+         } 
+      }
+      catch(Exception e) {
+         System.out.println(e);
+      }  
    }//end bookRoom
 
-   public static void assignHouseCleaningToRoom(DBProject esql){
+   public static void assignHouseCleaningToRoom(DBProject esql){ //6
 	  		// Given Staff SSN, HotelID, roomNo Assign the staff to the room 
       // Your code goes here.
       // ...
       // ...
    }//end assignHouseCleaningToRoom
    
-   public static void repairRequest(DBProject esql){
+   //there is an addRequest ... would you request
+   //does repair mean things that have been repaired and then request mean ask to repair?
+   public static void repairRequest(DBProject esql){ //7
 	  // Given a hotelID, Staff SSN, roomNo, repairID , date create a repair request in the DB
-      // Your code goes here.
-      // ...
-      // ...
+   int reqID;
+   int SSN;
+   int repairID;
+   Date requestDate;
+   String description;
+
+   //get reqID
+   while(true) {
+      System.out.print("Input RequestID: ");
+      try {
+         reqID = Integer.parseInt(in.readLine());
+         break;
+      }
+      catch(Exception e) {
+         System.out.println("Not a valid ReqID");
+         System.out.println(e);
+         continue;
+      }
+   }
+   //get SSN
+   while(true) {
+      System.out.print("Input manger ID: ");
+      try {
+         SSN = Integer.parseInt(in.readLine());
+         break;
+      }
+      catch(Exception e) {
+         System.out.println("Not a valid SSN");
+         System.out.println(e);
+         continue;
+      }
+   }   
+   //get repairID
+   while(true) {
+      System.out.print("Input RepairID: ");
+      try {
+         repairID = Integer.parseInt(in.readLine());
+         break;
+      }
+      catch(Exception e) {
+         System.out.println("Not a valid RepairID");
+         System.out.println(e);
+         continue;
+      }
+   }
+   //get date
+   while(true) {
+      System.out.print("Input Date of Repair: ");
+      try {
+         SimpleDateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");
+         requestDate = dateFormat.parse(in.readLine());
+         break;
+      }
+      catch(Exception e) {
+         System.out.println("Not a valid date");
+         System.out.println(e);
+         continue;
+      }
+   }
+   //get Description
+   while(true) {
+      System.out.print("Input repair description: ");
+      try {
+         description = in.readLine();
+         break;
+      }
+      catch(Exception e) {
+         System.out.println("Not a valid description");
+         System.out.println(e);
+         continue;
+      }
+   }
+
+  try {
+      String esqlQuery = "INSERT INTO Request(reqID, managerID, repairID, requestDate, description) VALUES( " + reqID + ", " + SSN + ", " + repairID + ",\' " + requestDate + " \', \' " + description + " \');";
+      esql.executeUpdate(esqlQuery);
+   }
+   catch(Exception e) {
+      System.out.println(e);
+   }
+
    }//end repairRequest
    
-   public static void numberOfAvailableRooms(DBProject esql){
+   public static void numberOfAvailableRooms(DBProject esql){ //8
 	  // Given a hotelID, get the count of rooms available 
       // Your code goes here.
       // ...
       // ...
    }//end numberOfAvailableRooms
    
-   public static void numberOfBookedRooms(DBProject esql){
+   public static void numberOfBookedRooms(DBProject esql){ //9
 	  // Given a hotelID, get the count of rooms booked
-      // Your code goes here.
-      // ...
-      // ...
+
+
    }//end numberOfBookedRooms
    
-   public static void listHotelRoomBookingsForAWeek(DBProject esql){
+   public static void listHotelRoomBookingsForAWeek(DBProject esql){ //10
 	  // Given a hotelID, date - list all the rooms available for a week(including the input date) 
       // Your code goes here.
       // ...
       // ...
    }//end listHotelRoomBookingsForAWeek
    
-   public static void topKHighestRoomPriceForADateRange(DBProject esql){
+   public static void topKHighestRoomPriceForADateRange(DBProject esql){ //11
 	  // List Top K Rooms with the highest price for a given date range
-      // Your code goes here.
-      // ...
-      // ...
+      Date date1;
+      Date date2;
+      int num;
+
+      //date1
+      while(true) {
+         System.out.print("Input Start Serch Date: ");
+         try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");
+            date1 = dateFormat.parse(in.readLine());
+            break;
+         }
+         catch(Exception e) {
+            System.out.println("Not a valid date");
+            System.out.println(e);
+            continue;
+         }
+      }
+
+      //date2
+      while(true) { 
+         System.out.print("Input End Search Date: ");
+         try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");
+            date2 = dateFormat.parse(in.readLine());
+            break;
+         }
+         catch(Exception e) {
+            System.out.println("Not a valid date");
+            System.out.println(e);
+            continue;
+         }
+      }
+      //top num
+      while(true) {
+         System.out.print("Input Top Number: ");
+         try {
+            num = Integer.parseInt(in.readLine());
+            break;
+         }
+         catch(Exception e) {
+            System.out.println("Not a valid RepairID");
+            System.out.println(e);
+            continue;
+         }
+      }
+      try {
+         String esqlQuery = "SELECT B.price FROM Booking B WHERE B.bookingDate >= '" + date1 + "' AND B.bookingDate <= '" + date2 + "' ORDER BY B.price DESC LIMIT '" + num + "';";
+         esql.executeQuery(esqlQuery);
+      }
+      catch(Exception e) {
+         System.out.println(e);
+      }
+
+
    }//end topKHighestRoomPriceForADateRange
    
-   public static void topKHighestPriceBookingsForACustomer(DBProject esql){
+   public static void topKHighestPriceBookingsForACustomer(DBProject esql){ //12
 	  // Given a customer Name, List Top K highest booking price for a customer 
       // Your code goes here.
       // ...
       // ...
    }//end topKHighestPriceBookingsForACustomer
    
-   public static void totalCostForCustomer(DBProject esql){
+   public static void totalCostForCustomer(DBProject esql){ //13
 	  // Given a hotelID, customer Name and date range get the total cost incurred by the customer
-      // Your code goes here.
-      // ...
-      // ...
+      //each time customerId pops up, take price and add to total price
+      int customerID;
+      Date date1;
+      Date date2;
+
+      //customerID
+      while(true) {
+         System.out.print("Input CustomerID: ");
+         try {
+            customerID = Integer.parseInt(in.readLine());
+            break;
+         }
+         catch(Exception e) {
+            System.out.println("Not a valid RepairID");
+            System.out.println(e);
+            continue;
+         }
+      }      
+
+      //date1
+      while(true) {
+         System.out.print("Input Start Serch Date: ");
+         try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");
+            date1 = dateFormat.parse(in.readLine());
+            break;
+         }
+         catch(Exception e) {
+            System.out.println("Not a valid date");
+            System.out.println(e);
+            continue;
+         }
+      }
+
+      //date2
+      while(true) { 
+         System.out.print("Input End Search Date: ");
+         try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");
+            date2 = dateFormat.parse(in.readLine());
+            break;
+         }
+         catch(Exception e) {
+            System.out.println("Not a valid date");
+            System.out.println(e);
+            continue;
+         }
+      }
+
+      try{
+         String esqlQuery = "SELECT SUM(B.price) FROM Booking B WHERE B.bookingDate >= '" + date1 + "' AND B.bookingDate <= '" + date2 + "' AND B.customer = '" + customerID + "';";
+         esql.executeQuery(esqlQuery);
+      }
+      catch(Exception e) {
+         System.out.println(e);
+      }
+
    }//end totalCostForCustomer
    
-   public static void listRepairsMade(DBProject esql){
+   public static void listRepairsMade(DBProject esql){ //14
 	  // Given a Maintenance company name list all the repairs along with repairType, hotelID and roomNo
       // Your code goes here.
       // ...
       // ...
    }//end listRepairsMade
    
-   public static void topKMaintenanceCompany(DBProject esql){
+   public static void topKMaintenanceCompany(DBProject esql){ //15
 	  // List Top K Maintenance Company Names based on total repair count (descending order)
-      // Your code goes here.
-      // ...
-      // ...
+      int num;
+      while(true) {
+         System.out.print("Input Top Number: ");
+         try {
+            num = Integer.parseInt(in.readLine());
+            break;
+         }
+         catch(Exception e) {
+            System.out.println("Not a valid RepairID");
+            System.out.println(e);
+            continue;
+         }
+      }
+// "SELECT B.price FROM Booking B WHERE B.bookingDate >= '" + date1 + "' AND B.bookingDate <= '" + date2 + "' ORDER BY B.price DESC LIMIT '" + num + "';";
+
+      try {
+         // String esqlQuery = "SELECT M.name FROM MaintenanceCompany M, Repair R WHERE R.mCompany = M.cmpID ORDER BY (SELECT R1.mCompany, COUNT(*) as c FROM Repair R1, MaintenanceCompany M2 WHERE M2.cmpID = R1.mCompany) DESC LIMIT '" + num + "';";
+         String esqlQuery = "SELECT M.name, COUNT(*) FROM MaintenanceCompany M, Repair R WHERE M.cmpID = R.mCompany GROUP BY M.name ORDER BY COUNT(*) DESC LIMIT '" + num + "';";
+         esql.executeQuery(esqlQuery);
+      }
+      catch(Exception e) {
+         System.out.println(e);
+      }
    }//end topKMaintenanceCompany
    
-   public static void numberOfRepairsForEachRoomPerYear(DBProject esql){
+   public static void numberOfRepairsForEachRoomPerYear(DBProject esql){ //16
 	  // Given a hotelID, roomNo, get the count of repairs per year
       // Your code goes here.
       // ...
