@@ -1014,8 +1014,7 @@ public class DBProject {
       // Your code goes here.
       int hotelID;
 		Date inputDate;
-		Date endDate;
-		String newDate;
+		String endDate;		
 
 		// get hotelID
 		while(true) {
@@ -1031,7 +1030,7 @@ public class DBProject {
 			}
 		}
 
-		// get inputDate
+		// get inputDate and endDate     
       while(true) {
 			System.out.print("Enter input date: ");
 			try {
@@ -1041,8 +1040,7 @@ public class DBProject {
 				Calendar c = Calendar.getInstance();
 				c.setTime(inputDate);
 				c.add(Calendar.DATE, 7);
-				newDate = dateFormat.format(c.getTime());
-				endDate = dateFormat.parse(newDate);
+				endDate = dateFormat.format(c.getTime());
 				break;
 			}
 			catch(Exception e) {
@@ -1052,27 +1050,9 @@ public class DBProject {
 			}
 		}
 
-		// get date 1 week after input date
-		//while(true) {
-		//	try {	
-		//		SimpleDateFormat endDateFormat = new SimpleDateFormat("mm/dd/yyyy");
-		//		Calendar c = Calendar.getInstance();
-		//		c.setTime(inputDate);
-		//		c.add(Calendar.DATE, 7);
-		//		endDate = endDateFormat.format(c.getTime());
-		//		
-		//		//System.out.println(endDate);
-		//		break;
-		//	}
-		//	catch(Exception e) {
-		//		System.out.println(e);
-		//		continue;
-		//	}
-		//}
-
 		// insert query
 		try {
-			String esqlQuery = /*"SELECT r.hotelID, r.roomNo, r.roomType FROM Room r WHERE r.hotelID = '" + hotelID + "' AND r.roomNo NOT IN (*/"SELECT b.roomNo FROM Booking b WHERE b.hotelID = '" + hotelID + "';";// AND b.bookingDate >= '" + inputDate + "' AND b.bookingDate <= '" + endDate + "';";
+			String esqlQuery = "SELECT r.hotelID, r.roomNo, r.roomType FROM Room r WHERE r.hotelID = '" + hotelID + "' AND r.roomNo NOT IN (SELECT b.roomNo FROM Booking b WHERE b.hotelID = '" + hotelID + "' AND b.bookingDate >= '" + inputDate + "' AND b.bookingDate <= '" + endDate + "');";
 			esql.executeQuery(esqlQuery);
 		}
 		catch(Exception e) {
