@@ -969,9 +969,63 @@ public class DBProject {
    
    public static void totalCostForCustomer(DBProject esql){ //13
 	  // Given a hotelID, customer Name and date range get the total cost incurred by the customer
-      // Your code goes here.
-      // ...
-      // ...
+      //each time customerId pops up, take price and add to total price
+      int customerID;
+      Date date1;
+      Date date2;
+
+      //customerID
+      while(true) {
+         System.out.print("Input CustomerID: ");
+         try {
+            customerID = Integer.parseInt(in.readLine());
+            break;
+         }
+         catch(Exception e) {
+            System.out.println("Not a valid RepairID");
+            System.out.println(e);
+            continue;
+         }
+      }      
+
+      //date1
+      while(true) {
+         System.out.print("Input Start Serch Date: ");
+         try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");
+            date1 = dateFormat.parse(in.readLine());
+            break;
+         }
+         catch(Exception e) {
+            System.out.println("Not a valid date");
+            System.out.println(e);
+            continue;
+         }
+      }
+
+      //date2
+      while(true) { 
+         System.out.print("Input End Search Date: ");
+         try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");
+            date2 = dateFormat.parse(in.readLine());
+            break;
+         }
+         catch(Exception e) {
+            System.out.println("Not a valid date");
+            System.out.println(e);
+            continue;
+         }
+      }
+
+      try{
+         String esqlQuery = "SELECT SUM(B.price) FROM Booking B WHERE B.bookingDate >= '" + date1 + "' AND B.bookingDate <= '" + date2 + "' AND B.customer = '" + customerID + "';";
+         esql.executeQuery(esqlQuery);
+      }
+      catch(Exception e) {
+         System.out.println(e);
+      }
+
    }//end totalCostForCustomer
    
    public static void listRepairsMade(DBProject esql){ //14
