@@ -802,7 +802,7 @@ public class DBProject {
    int SSN;
    int roomNo;
    int repairID;
-   Date bookingDate;
+   Date requestDate;
 
    //get hotelID
    while(true) {
@@ -861,7 +861,7 @@ public class DBProject {
       System.out.print("Input Date of Booking: ");
       try {
          SimpleDateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");
-         bookingDate = dateFormat.parse(in.readLine());
+         requestDate = dateFormat.parse(in.readLine());
          break;
       }
       catch(Exception e) {
@@ -874,7 +874,7 @@ public class DBProject {
    String description;
    String repairType; //10 chars
    int mCompany;
-   
+   int reqID;
    //get Description
    while(true) {
       System.out.print("Input repair description: ");
@@ -898,13 +898,19 @@ public class DBProject {
          break;
       }
       catch(Exception e) {
-         System.out.println("Not a valid RepairID");
+         System.out.println("Not a valid mCompany ID");
          System.out.println(e);
          continue;
       }
    }
    //only manager can make repair request
-   
+   try {
+      String esqlQuery = "INSERT INTO Request(reqID, managerID, repairID, requestDate, description) VALUES( " + reqID + ", " + SSN + ", " + repairID + ", " + requestDate + ", /' " + description + " /';)";
+      esql.executeUpdate(esqlQuery);
+   }
+   catch(Exception e) {
+      System.out.println(e);
+   }
 
    }//end repairRequest
    
@@ -917,19 +923,6 @@ public class DBProject {
    
    public static void numberOfBookedRooms(DBProject esql){
 	  // Given a hotelID, get the count of rooms booked
-      int hotelID;
-      while(true) {
-         System.out.print("Input Hotel ID: ");
-         try {
-            hotelID = Integer.parseInt(in.readLine());
-            break;
-         }
-         catch(Exception e) {
-            System.out.println("Not a valid RepairID");
-            System.out.println(e);
-            continue;
-         }
-      }
 
 
    }//end numberOfBookedRooms
