@@ -1054,6 +1054,10 @@ public class DBProject {
 
       try {
          String esqlQuery = "SELECT M.name FROM MaintenanceCompany M, Repair R WHERE R.mCompany = M.cmpID ORDER BY (SELECT R1.mCompany FROM Repair R1) DESC LIMIT '" + num + "';";
+         esql.executeQuery(esqlQuery);
+      }
+      catch(Exception e) {
+         System.out.println(e);
       }
    }//end topKMaintenanceCompany
    
