@@ -950,7 +950,7 @@ public class DBProject {
          }
       }
       try {
-         String esqlQuery = "SELECT COUNT("+ num +"), price FROM Booking WHERE bookingDate >= '" + date1 + "' AND bookingDate <= '" + date2 + "' ORDER BY COUNT(" + num + ") DESC;";
+         String esqlQuery = "SELECT COUNT("+ num +"), price FROM(SELECT price FROM Booking ORDER BY COUNT(" + num + ") DESC) WHERE bookingDate >= '" + date1 + "' AND bookingDate <= '" + date2 + "';";
          esql.executeQuery(esqlQuery);
       }
       catch(Exception e) {
